@@ -139,10 +139,84 @@ Grid.prototype.seam = function (chA, chB, ch) {
   for (const [x, y] of marks) this.set(x, y, ch);
 };
 
-// standard eye: ink block with white shine, GBA-style
+// --------------------------------------------------------------------------
+// EYE PRIMITIVES — the face library. Drawn after outline(), so each is
+// self-contained. 'W' = sclera white, 'K' = glint (auto-added to palettes
+// at bake time if missing).
+// --------------------------------------------------------------------------
+
+// local helper: fill an ellipse and ink its own boundary ring
+Grid.prototype._eyeBall = function (cx, cy, rx, ry, fillCh) {
+  const inside = (x, y) => {
+    const dx = (x - cx) / rx, dy = (y - cy) / ry;
+    return dx * dx + dy * dy <= 1;
+  };
+  for (let y = Math.floor(cy - ry); y <= Math.ceil(cy + ry); y++) {
+    for (let x = Math.floor(cx - rx); x <= Math.ceil(cx + rx); x++) {
+      if (!inside(x, y)) continue;
+      const edge = !inside(x - 1, y) || !inside(x + 1, y) || !inside(x, y - 1) || !inside(x, y + 1);
+      this.set(x, y, edge ? 'o' : fillCh);
+    }
+  }
+};
+
+// default eye: full dark rounded oval with a clean interior glint and a tiny
+// lower catch-light — the classic cute-Pokémon eye (Squirtle/Chikorita style).
 Grid.prototype.eye = function (x, y, w, h) {
-  this.rect(x, y, w, h, 'o');
-  if (w >= 3 && h >= 3) this.rect(x + 1, y + 1, Math.max(1, Math.floor(w / 3)), Math.max(1, Math.floor(h / 3)), 'K');
+  const rx = (w - 1) / 2 + 0.3, ry = (h - 1) / 2 + 0.3;
+  const cx = x + (w - 1) / 2, cy = y + (h - 1) / 2;
+  this.ellipse(cx, cy, Math.max(1, rx), Math.max(1, ry), 'o');
+  if (w >= 4 && h >= 4) {
+    // glint sits fully inside the dark mass, never on the rim
+    const gx = Math.max(x + 1, Math.round(cx - rx * 0.4));
+    const gy = Math.max(y + 1, Math.round(cy - ry * 0.4));
+    this.rect(gx, gy, 2, 2, 'K');
+    this.set(Math.round(cx + rx * 0.3), Math.round(cy + ry * 0.35), 'K');
+  } else {
+    this.set(Math.round(cx), Math.round(cy - 0.5), 'K');
+  }
+};
+
+// white-sclera variant: white ball, dark pupil, glint (for the few faces
+// that suit it — fierce or goofy species)
+Grid.prototype.eyeSclera = function (x, y, w, h, iris) {
+  const rx = (w - 1) / 2, ry = (h - 1) / 2;
+  const cx = x + rx, cy = y + ry;
+  this._eyeBall(cx, cy, rx, ry, 'W');
+  const prx = Math.max(1, rx * 0.55), pry = Math.max(1, ry * 0.5);
+  this.ellipse(cx, cy + ry * 0.22, prx, pry, iris || 'o');
+  this.set(Math.round(cx - prx * 0.5), Math.round(cy - pry * 0.4), 'K');
+};
+
+// tiny round dot eye (rodents, bugs, minimal faces)
+Grid.prototype.eyeDot = function (cx, cy, r) {
+  this.ellipse(cx, cy, r || 1.5, r || 1.5, 'o');
+  this.set(cx - 1, cy - 1, 'K');
+};
+
+// almond predator eye: flat brow on top, pointed oval, bright pupil
+Grid.prototype.eyeAlmond = function (x, y, w, h, pupil) {
+  const rx = (w - 1) / 2, ry = (h - 1) / 2;
+  const cx = x + rx, cy = y + ry;
+  this.ellipse(cx, cy, rx, ry, 'o');
+  this.line(x, y + 1, x + w - 1, y + 1, 'o', 1); // hard brow
+  this.set(cx, cy + 0.5, pupil || 'K');
+  this.set(cx + 1, cy + 0.5, pupil || 'K');
+};
+
+// glow eye: solid dark round with a luminous core (ghosts, machines)
+Grid.prototype.eyeGlow = function (x, y, w, h, glow) {
+  const rx = (w - 1) / 2, ry = (h - 1) / 2;
+  const cx = x + rx, cy = y + ry;
+  this.ellipse(cx, cy, rx, ry, 'o');
+  this.ellipse(cx, cy, Math.max(1, rx * 0.45), Math.max(1, ry * 0.45), glow || 'K');
+};
+
+// sleepy closed eye: gentle down-curved lid
+Grid.prototype.eyeSleepy = function (x, y, w) {
+  this.line(x, y, x + w - 1, y, 'o', 1);
+  this.set(x, y + 1, 'o');
+  this.set(x + w - 1, y + 1, 'o');
 };
 
 Grid.prototype.render = function () {

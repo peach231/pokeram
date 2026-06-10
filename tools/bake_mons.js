@@ -100,6 +100,9 @@ for (const key of G.DEX_ORDER) {
       if (!hex) throw new Error(`${key}: palette key '${r.pal[ch]}' not in master palette`);
       pal[ch] = hex;
     }
+    // auto-provide sclera/glint whites for the eye primitives
+    if (!pal.W && rows.some(rr => rr.includes('W'))) pal.W = '#f4f4f4';
+    if (!pal.K && rows.some(rr => rr.includes('K'))) pal.K = '#f4f4f4';
     // Gen-style sel-out shading pass
     const shaded = postShade(rows, pal);
     rows = shaded.rows;

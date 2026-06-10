@@ -39,8 +39,8 @@ R.sproutle = {
     g.seam(['w'], ['s', 't', 'u'], 't');
     g.seam(['f', 'F'], ['g', 'h'], 'o');
     // face: big bright eyes, happy open mouth
-    g.rect(15, 12, 5, 7, 'o'); g.rect(16, 13, 2, 3, 'K');
-    g.rect(27, 12, 5, 7, 'o'); g.rect(28, 13, 2, 3, 'K');
+    g.eye(15, 11, 6, 7);
+    g.eye(27, 11, 6, 7);
     g.line(20, 23, 26, 23, 'o', 1);
     g.set(21, 24, 'o'); g.set(22, 24, 'o'); g.set(23, 24, 'o');  // open smile
     g.set(13, 19, 'F'); g.set(33, 19, 'F');     // cheek dots
@@ -97,8 +97,8 @@ R.aquilet = {
     g.seam(['y', 'Y'], ['w', 'b'], 'o');
     g.seam(['l', 'i'], ['b'], 'o');
     // big sparkly eyes above the bib
-    g.rect(15, 12, 5, 7, 'o'); g.rect(16, 13, 2, 3, 'K');
-    g.rect(28, 12, 5, 7, 'o'); g.rect(29, 13, 2, 3, 'K');
+    g.eye(15, 11, 6, 7);
+    g.eye(28, 11, 6, 7);
   },
   back(g) {
     // rear: blue back, crest curl up top, wings at the sides, white hips
@@ -145,8 +145,8 @@ R.emberynx = {
     g.outline('o');
     g.seam(['m'], ['b', 'l', 's'], 's');
     // amber panther eyes
-    g.rect(11, 14, 4, 5, 'o'); g.set(12, 15, 'K'); g.set(13, 15, 'K');
-    g.rect(20, 14, 4, 5, 'o'); g.set(21, 15, 'K');
+    g.eyeAlmond(10, 14, 6, 4);
+    g.eyeAlmond(19, 14, 6, 4);
     g.set(12, 21, 'o'); g.set(13, 21, 'o'); // nose
     g.line(12, 24, 15, 25, 'o', 1);
   },
@@ -425,8 +425,8 @@ R.pyranther = {
     g.seam(['m'], ['b', 'l', 's'], 's');
     // sly amber eyes under a brow line
     g.line(9, 12, 14, 12, 'o', 1);
-    g.rect(10, 13, 4, 5, 'o'); g.set(11, 14, 'K'); g.set(12, 14, 'K');
-    g.rect(19, 13, 4, 5, 'o'); g.set(20, 14, 'K');
+    g.eyeAlmond(9, 13, 6, 4);
+    g.eyeAlmond(18, 13, 6, 4);
     g.set(11, 20, 'o'); g.set(12, 20, 'o');
     g.line(11, 24, 14, 25, 'o', 1);
     // ember rosette markings
@@ -479,8 +479,8 @@ R.umbranther = {
     g.seam(['f'], ['c'], 'o');
     // burning eyes (yellow shine)
     g.line(7, 13, 13, 13, 'o', 1);
-    g.rect(8, 14, 4, 4, 'o'); g.set(9, 15, 'K'); g.set(10, 15, 'K');
-    g.rect(17, 14, 4, 4, 'o'); g.set(18, 15, 'K');
+    g.eyeAlmond(7, 14, 6, 4);
+    g.eyeAlmond(16, 14, 6, 4);
     g.set(9, 23, 'o'); g.set(10, 23, 'o');
     g.line(9, 27, 13, 28, 'o', 1);
     // body markings
@@ -1146,8 +1146,8 @@ R.wraithorn = {
     g.outline('o');
     g.seam(['b'], ['p', 'q', 'l'], 'o');
     // glowing eyes
-    g.rect(12, 15, 5, 5, 'o'); g.rect(13, 16, 3, 2, 'K');
-    g.rect(20, 15, 5, 5, 'o'); g.rect(21, 16, 2, 2, 'K');
+    g.eyeGlow(12, 15, 5, 5);
+    g.eyeGlow(20, 15, 5, 5);
     g.line(13, 24, 16, 25, 'o', 1);
     g.set(31, 22, 'l'); g.set(25, 33, 'l');
   }
@@ -1430,8 +1430,8 @@ R.dracrown = {
     g.seam(['Y', 'y'], ['p', 'q', 'l'], 'o');
     g.seam(['s'], ['p', 'q', 'l'], 'o');
     // regal burning eyes
-    g.rect(20, 13, 5, 4, 'o'); g.set(21, 14, 'K'); g.set(22, 14, 'K');
-    g.rect(31, 13, 5, 4, 'o'); g.set(32, 14, 'K');
+    g.eyeAlmond(20, 13, 5, 4);
+    g.eyeAlmond(31, 13, 5, 4);
     g.line(24, 22, 31, 22, 'o', 1);
     g.set(22, 24, 'K'); g.set(33, 24, 'K');     // fangs
   }
@@ -1723,8 +1723,8 @@ R.luminbolt = {
     g.outline('o');
     g.seam(['y', 'Y', 'e'], ['s'], 'o');
     g.seam(['l'], ['s', 'y'], 'o');
-    g.rect(7, 11, 4, 4, 'o'); g.set(8, 12, 'K');
-    g.rect(13, 11, 4, 4, 'o'); g.set(14, 12, 'K');
+    g.eyeGlow(7, 11, 4, 4);
+    g.eyeGlow(13, 11, 4, 4);
   }
 };
 
@@ -1877,8 +1877,8 @@ R.smeltitan = {
     g.rect(13, 40, 8, 7, 't');
     g.rect(27, 40, 8, 7, 't');
     g.outline('o');
-    g.rect(15, 15, 5, 4, 'o'); g.set(16, 16, 'F');
-    g.rect(28, 15, 5, 4, 'o'); g.set(29, 16, 'F');
+    g.eyeGlow(15, 15, 5, 4, 'F');
+    g.eyeGlow(28, 15, 5, 4, 'F');
     g.set(11, 19, 'v'); g.set(36, 19, 'v');
   }
 };
@@ -2014,8 +2014,8 @@ R.sonarath = {
     g.set(21, 29, 'w'); g.set(27, 29, 'w');
     g.set(24, 33, 'w');
     g.outline('o');
-    g.rect(17, 18, 4, 5, 'o'); g.set(18, 19, 'K');
-    g.rect(27, 18, 4, 5, 'o'); g.set(28, 19, 'K');
+    g.eyeGlow(17, 18, 4, 5);
+    g.eyeGlow(27, 18, 4, 5);
   }
 };
 
@@ -2124,8 +2124,8 @@ R.hexkit = {
     g.ball(19, 18, 10, 9, 'b', 'l', null);
     g.outline('o');
     // glowing yellow eyes
-    g.rect(13, 15, 4, 5, 'o'); g.set(14, 16, 'K'); g.set(15, 16, 'K');
-    g.rect(22, 15, 4, 5, 'o'); g.set(23, 16, 'K');
+    g.eyeAlmond(12, 15, 6, 4);
+    g.eyeAlmond(21, 15, 6, 4);
     g.line(15, 25, 18, 26, 'o', 1);
     g.line(16, 38, 16, 43, 'b', 3);
     g.line(28, 38, 28, 43, 'b', 3);
@@ -2153,8 +2153,8 @@ R.maleficat = {
     g.line(31, 41, 32, 47, 'b', 3);
     g.outline('o');
     g.seam(['p', 'q'], ['b', 'l'], 'o');
-    g.rect(14, 9, 4, 5, 'o'); g.set(15, 10, 'K'); g.set(16, 10, 'K');
-    g.rect(23, 9, 4, 5, 'o'); g.set(24, 10, 'K');
+    g.eyeAlmond(13, 9, 6, 4);
+    g.eyeAlmond(22, 9, 6, 4);
     g.line(17, 18, 20, 18, 'o', 1);
   }
 };
@@ -2220,8 +2220,8 @@ R.florazor = {
     g.outline('o');
     g.seam(['y'], ['s', 'i', 'g', 'h'], 'o');
     g.seam(['s', 'i'], ['g', 'h', 'e'], 'o');
-    g.rect(19, 19, 4, 4, 'o'); g.set(20, 20, 'K');
-    g.rect(26, 19, 4, 4, 'o'); g.set(27, 20, 'K');
+    g.eyeGlow(19, 19, 4, 4);
+    g.eyeGlow(26, 19, 4, 4);
     g.line(22, 27, 26, 27, 'o', 1);
   }
 };
@@ -2387,8 +2387,8 @@ R.owlume = {
     g.line(26, 34, 26, 38, 'l', 1);
     g.outline('o');
     g.seam(['y'], ['b', 'l', 'd'], 'o');
-    g.rect(15, 17, 5, 5, 'o'); g.set(16, 18, 'K'); g.set(17, 18, 'K');
-    g.rect(29, 17, 5, 5, 'o'); g.set(30, 18, 'K');
+    g.eyeGlow(15, 17, 5, 5);
+    g.eyeGlow(29, 17, 5, 5);
     g.tri(22, 24, 26, 24, 24, 27, 'w');
     g.line(18, 41, 18, 44, 'w', 2);
     g.line(29, 41, 29, 44, 'w', 2);
@@ -2722,8 +2722,8 @@ R.astradrax = {
     g.outline('o');
     g.seam(['i'], ['p', 'q', 'l'], 'o');
     // starlight eyes
-    g.rect(33, 9, 4, 4, 'o'); g.set(34, 10, 'K'); g.set(35, 10, 'K');
-    g.rect(41, 9, 4, 4, 'o'); g.set(42, 10, 'K');
+    g.eyeAlmond(32, 9, 5, 4);
+    g.eyeAlmond(40, 9, 5, 4);
     // constellation along the spine + sky
     g.set(22, 42, 'y'); g.set(33, 34, 'y'); g.set(39, 22, 'y');
     g.set(8, 10, 'y'); g.set(52, 18, 'y'); g.set(18, 22, 'y'); g.set(28, 2, 'y');
@@ -2917,6 +2917,7 @@ R.__trainers = {
 };
 
 module.exports = R;
+
 
 
 
