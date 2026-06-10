@@ -254,9 +254,9 @@
       yield {
         t: 'custom',
         run: function (done) {
-          G.pushScene(G.Chooser({
-            items: ['Take it!', 'Leave it'],
-            onPick: function (i) { answer.v = i; done(); }
+          G.pushScene(G.StarterPreviewScene(key, function (takeIt) {
+            answer.v = takeIt ? 0 : 1;
+            done();
           }));
         }
       };

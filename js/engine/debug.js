@@ -151,6 +151,32 @@
     var observed = caught / N;
     assert(Math.abs(observed - p) < 0.03, 'catch rate ' + observed.toFixed(3) + ' vs analytic ' + p.toFixed(3));
 
+    // wild grass encounters: stepping in tall grass must start battles at
+    // roughly the map's encounter rate, picking species from its table
+    (function () {
+      var realStart = G.startBattle;
+      var realPlayer = G.player;
+      G.player = { party: [G.makeMon('sproutle', 8)], repelSteps: 0, dexSeen: {}, dexCaught: {} };
+      var started = 0, lastSpecies = {};
+      G.startBattle = function (bo) {
+        started++;
+        lastSpecies[bo.foes[0].sp] = 1;
+        return {};
+      };
+      G.seedRng(777);
+      for (var gi = 0; gi < 2000; gi++) G.hooks.grassStep(G.MAPS.route1);
+      G.startBattle = realStart;
+      G.player = realPlayer;
+      var rate = started / 2000;
+      assert(rate > 0.06 && rate < 0.15, 'grass encounter rate ' + rate.toFixed(3) + ' outside ~10%');
+      var tableOk = true;
+      for (var spk in lastSpecies) {
+        if (!G.MAPS.route1.encounters.table.some(function (e) { return e.sp === spk; })) tableOk = false;
+      }
+      assert(tableOk, 'encounter produced species not in the map table');
+      assert(Object.keys(lastSpecies).length >= 3, 'encounter variety too low: ' + Object.keys(lastSpecies).join(','));
+    })();
+
     // determinism: same seed -> same battle log
     var log1 = G.debug.simBattle('emberynx', 'sproutle', { n: 1, seed: 42, level: 10, verbose: true }).log.join('|');
     var log2 = G.debug.simBattle('emberynx', 'sproutle', { n: 1, seed: 42, level: 10, verbose: true }).log.join('|');

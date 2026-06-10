@@ -312,7 +312,20 @@
       var d = G.DIRS[p.dir];
       var fx = p.x + d.dx, fy = p.y + d.dy;
 
+      // talking is forgiving: the faced tile first, then any adjacent side
       var npc = w.npcAt(fx, fy);
+      if (!npc) {
+        var dirs = ['down', 'up', 'left', 'right'];
+        for (var di = 0; di < dirs.length; di++) {
+          var dd = G.DIRS[dirs[di]];
+          var cand = w.npcAt(p.x + dd.dx, p.y + dd.dy);
+          if (cand) {
+            npc = cand;
+            p.dir = dirs[di]; // turn toward them
+            break;
+          }
+        }
+      }
       if (npc) {
         if (!npc.obj) npc.dir = G.OPPOSITE_DIR[p.dir]; // face the player
         if (G.hooks.interact && G.hooks.interact(npc)) return;
@@ -378,6 +391,12 @@
       for (var i = 0; i < ents.length; i++) self._drawActor(ctx, ents[i], cam);
 
       this._drawLayer(ctx, 'over', x0, y0, x1, y1, cam);
+
+      // controls hint, bottom-left
+      ctx.fillStyle = 'rgba(26,28,44,0.72)';
+      ctx.fillRect(0, G.SCREEN_H - 24, 118, 24);
+      G.text(ctx, 'Arrows Move  Z Talk', 4, G.SCREEN_H - 22, G.C.white);
+      G.text(ctx, 'X Run  Enter Menu', 4, G.SCREEN_H - 11, G.C.lgry);
     },
 
     _drawLayer: function (ctx, layer, x0, y0, x1, y1, cam) {

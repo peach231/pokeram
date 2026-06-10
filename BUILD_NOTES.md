@@ -9,6 +9,7 @@ GBA-style monster-catching RPG. Vanilla JS + Canvas, no build step — double-cl
   order under Node, lints art grids / maps / species / moves, runs nothing visual.
 - **Battle logic tests**: loaded scripts expose `G.debug.runTests()` (run by check
   via #debug in browser; under node: see how tools/check.js loads, then call it).
+- **Sel-out shading** is applied automatically at bake time (postShade in bake_mons.js): fill pixels touching the outline below/right get a darker master-palette shade. Don't hand-shade rims in recipes.
 - **Creature art pipeline**: recipes in `tools/recipes.js` (shape grammar from
   `tools/spritegen.js`: ball/ellipse/tri/line/rect/ring/eye/outline/seam) →
   `node tools/bake_mons.js` → bakes palette-indexed grids into
@@ -67,4 +68,5 @@ GBA-style monster-catching RPG. Vanilla JS + Canvas, no build step — double-cl
   level itself is skipped (only level-up learns).
 - Audio not yet human-audited (composed blind; tracker patterns may want
   rebalancing after a listen — channel gains in audio.js CHAN_VOL).
+
 

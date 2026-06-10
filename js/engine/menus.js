@@ -15,6 +15,65 @@
     ctx.fillRect(x, y, fw, 3);
   }
 
+  // ------------------------------------------------- starter preview screen --
+  // Full preview before committing: sprite, types, stat bars, dex entry.
+  // onChoice(true) = take it, onChoice(false) = put it back.
+  G.StarterPreviewScene = function (spKey, onChoice) {
+    var sp = G.SPECIES[spKey];
+    var maxBase = 130; // bar scale
+    return {
+      opaque: true,
+      enter: function () {
+        var self = this;
+        G.pushScene(G.Chooser({
+          items: ['Take it!', 'Leave it'],
+          x: 150, y: 112,
+          onPick: function (i) {
+            G.popScene(); // pop the preview itself
+            onChoice(i === 0);
+          }
+        }));
+      },
+      update: function () {},
+      draw: function (ctx) {
+        ctx.fillStyle = '#2a3040';
+        ctx.fillRect(0, 0, W, H);
+        // left: the creature on a soft pedestal
+        panel(ctx, 6, 6, 104, 116);
+        ctx.fillStyle = '#3a4150';
+        ctx.beginPath();
+        ctx.ellipse(58, 96, 36, 9, 0, 0, Math.PI * 2);
+        ctx.fill();
+        var img = G.IMG['mon_' + spKey];
+        if (img) ctx.drawImage(img, 58 - img.width / 2, 98 - img.height);
+        G.text(ctx, sp.name, 14, 12, G.UI.text, G.UI.textShadow);
+        for (var t = 0; t < sp.types.length; t++) {
+          ctx.fillStyle = G.TYPE_COLORS[sp.types[t]];
+          ctx.fillRect(14 + t * 44, 24, 40, 11);
+          G.text(ctx, sp.types[t].toUpperCase().slice(0, 8), 17 + t * 44, 26, G.C.white);
+        }
+        // right: base stat bars
+        panel(ctx, 116, 6, 120, 84);
+        var rows = [['HP', sp.base.hp], ['Attack', sp.base.atk], ['Defense', sp.base.def],
+                    ['Sp. Atk', sp.base.spa], ['Sp. Def', sp.base.spd], ['Speed', sp.base.spe]];
+        for (var i = 0; i < rows.length; i++) {
+          var y = 13 + i * 12;
+          G.text(ctx, rows[i][0], 122, y, G.UI.text, G.UI.textShadow);
+          var bw = Math.round(56 * Math.min(1, rows[i][1] / maxBase));
+          ctx.fillStyle = G.C.dgry;
+          ctx.fillRect(172, y + 1, 58, 6);
+          ctx.fillStyle = rows[i][1] >= 100 ? G.UI.hpGreen : rows[i][1] >= 60 ? G.UI.expBlue : G.UI.hpYellow;
+          ctx.fillRect(173, y + 2, bw, 4);
+        }
+        // dex flavor
+        var lines = G.textWrap(sp.dex, 222);
+        for (var d = 0; d < Math.min(2, lines.length); d++) {
+          G.text(ctx, lines[d], 10, 128 + d * 11, G.C.white, '#1a1c2c');
+        }
+      }
+    };
+  };
+
   // ------------------------------------------------------------ start menu --
   G.StartMenu = function () {
     var items = ['DEX', 'PARTY', 'BAG', 'SAVE', 'EXIT'];
