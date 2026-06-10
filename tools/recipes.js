@@ -10,96 +10,108 @@
 const R = {};
 
 // ============================================================ SPROUTLE ====
+// Upright chibi turtle, Squirtle-formula: big expressive head, CONTRASTING
+// brown shell behind, cream belly plate, planted limbs, sprout over shoulder.
 R.sproutle = {
-  pal: { o: 'ink', h: 'leaf3', g: 'leaf2', e: 'leaf1', c: 'grn3', b: 'grn2', a: 'grn1', f: 'leaf2', F: 'leaf3', K: 'white' },
+  pal: { o: 'ink', g: 'leaf2', h: 'leaf3', e: 'leaf1', s: 'brn2', t: 'brn1', u: 'brn3', w: 'tan1', f: 'grn2', F: 'grn3', K: 'white' },
   draw(g) {
-    // shell
-    g.ball(31, 27, 11, 10, 'b', 'c', 'a');
-    // tail nub
-    g.tri(40, 31, 45, 34, 39, 36, 'g');
-    // back leg
-    g.ellipse(33, 38, 4, 4, 'e');
-    // head (over shell)
-    g.ball(16, 24, 10, 10, 'g', 'h', 'e');
-    // front leg (touches ground line y=42)
-    g.ellipse(13, 38, 4, 4, 'g');
-    // sprout: stem + two chunky leaves meeting at the stem top
-    g.line(31, 19, 31, 11, 'a', 2);
-    g.ellipse(27, 10, 4, 3, 'f');
-    g.tri(31, 12, 24, 11, 30, 8, 'f');
-    g.ellipse(36, 9, 4, 3, 'f');
-    g.tri(32, 11, 39, 10, 33, 7, 'f');
-    g.set(26, 9, 'F'); g.set(27, 9, 'F'); g.set(35, 8, 'F'); g.set(36, 8, 'F');
+    // sprout rising from the shell, peeking past the head's right side
+    g.line(35, 14, 36, 8, 'e', 2);
+    g.tri(36, 10, 29, 6, 35, 3, 'f');
+    g.tri(37, 10, 44, 6, 38, 3, 'f');
+    g.set(33, 6, 'F'); g.set(34, 6, 'F'); g.set(39, 5, 'F'); g.set(40, 5, 'F');
+    // shell: broad brown dome behind the body
+    g.ball(24, 31, 15, 12, 's', 'u', 't');
+    // arms out at the sides
+    g.ball(7, 31, 4, 5, 'g', 'h', 'e');
+    g.ball(41, 31, 4, 5, 'g', 'h', 'e');
+    // belly plate
+    g.ellipse(24, 35, 9, 8, 'w');
+    // feet planted at the baseline
+    g.ball(15, 43, 5, 4, 'g', 'h', 'e');
+    g.ball(33, 43, 5, 4, 'g', 'h', 'e');
+    g.set(13, 45, 'o'); g.set(16, 45, 'o');     // toe notches
+    g.set(31, 45, 'o'); g.set(34, 45, 'o');
+    // big friendly head over the shell
+    g.ball(23, 16, 12, 11, 'g', 'h', 'e');
     g.outline('o');
-    g.seam(['g', 'h', 'e'], ['b', 'c', 'a'], 'o');
-    // face
-    g.eye(10, 20, 5, 6);
-    g.eye(20, 20, 4, 6);
-    g.line(13, 30, 16, 31, 'o', 1);
-    // shell speckles
-    g.set(34, 23, 'a'); g.set(35, 23, 'a');
-    g.set(30, 31, 'a'); g.set(31, 31, 'a');
+    g.seam(['g', 'h', 'e'], ['s', 't', 'u', 'w'], 'o');
+    g.seam(['w'], ['s', 't', 'u'], 't');
+    g.seam(['f', 'F'], ['g', 'h'], 'o');
+    // face: big bright eyes, happy open mouth
+    g.rect(15, 12, 5, 7, 'o'); g.rect(16, 13, 2, 3, 'K');
+    g.rect(27, 12, 5, 7, 'o'); g.rect(28, 13, 2, 3, 'K');
+    g.line(20, 23, 26, 23, 'o', 1);
+    g.set(21, 24, 'o'); g.set(22, 24, 'o'); g.set(23, 24, 'o');  // open smile
+    g.set(13, 19, 'F'); g.set(33, 19, 'F');     // cheek dots
   },
   back(g) {
-    // rear view: big shell dome, back of head left, sprout on top
-    g.ball(20, 10, 8, 8, 'g', 'h', null);          // back of head
-    g.ball(34, 24, 16, 15, 'b', 'c', 'a');         // shell
-    g.line(33, 12, 33, 6, 'a', 2);
-    g.ellipse(29, 4, 4, 2, 'f');
-    g.ellipse(38, 3, 4, 2, 'f');
-    g.ellipse(16, 34, 5, 4, 'g');                  // visible hind leg
+    // rear: dominant brown shell with plate ring, head peeking above
+    g.ball(28, 12, 10, 8, 'g', 'h', null);
+    g.line(36, 8, 37, 4, 'e', 2);
+    g.tri(37, 5, 31, 2, 36, 0, 'f');
+    g.tri(38, 5, 44, 2, 39, 0, 'f');
+    g.ball(28, 26, 17, 13, 's', 'u', 't');
+    g.ring(28, 26, 12, 9, 't', 0.25);
+    g.ball(12, 36, 5, 4, 'g', null, 'e');
+    g.ball(44, 36, 5, 4, 'g', null, 'e');
     g.outline('o');
-    g.seam(['g', 'h'], ['b', 'c', 'a'], 'o');
-    g.set(30, 20, 'a'); g.set(31, 20, 'a');
-    g.set(38, 28, 'a'); g.set(39, 28, 'a');
+    g.seam(['g', 'h'], ['s', 't', 'u'], 'o');
   }
 };
 
 // ============================================================ AQUILET =====
+// Piplup-formula eaglet: bold round head with white face-bib, smaller egg
+// body, defined angled wings, wave-curl crest, planted orange talons.
 R.aquilet = {
-  pal: { o: 'ink', b: 'blu2', d: 'blu1', l: 'blu3', w: 'white', y: 'org2', Y: 'org3', K: 'white' },
+  pal: { o: 'ink', b: 'blu2', d: 'blu1', l: 'blu3', i: 'ice2', w: 'white', y: 'org2', Y: 'org3', K: 'white' },
   draw(g) {
-    // crest: three short feathers rooted in the crown
-    g.ellipse(20, 13, 2, 4, 'd');
-    g.ellipse(25, 11, 2, 5, 'b');
-    g.ellipse(30, 13, 2, 4, 'd');
-    // body egg
-    g.ball(24, 28, 13, 14, 'b', 'l', 'd');
-    // wing stub (right side)
-    g.ellipse(35, 30, 4, 8, 'd');
+    // wave-curl crest sweeping back from the crown
+    g.ring(27, 10, 5, 4, 'i', 0.55, 160, 30);
+    g.set(31, 8, 'i'); g.set(32, 9, 'i');
+    // body egg, smaller than the head
+    g.ball(24, 35, 11, 11, 'b', 'l', 'd');
+    // angled wings, tips out like little flippers
+    g.tri(12, 30, 4, 42, 15, 40, 'd');
+    g.tri(36, 30, 44, 42, 33, 40, 'd');
+    g.set(8, 38, 'l'); g.set(40, 38, 'l');      // feather edge
+    // white belly
+    g.ellipse(24, 38, 6, 6, 'w');
+    // big round head
+    g.ball(24, 16, 12, 11, 'b', 'l', 'd');
+    // white face bib (lower half of the face)
+    g.ellipse(24, 20, 8, 6, 'w');
+    // small hooked beak, centered
+    g.tri(20, 19, 28, 19, 24, 25, 'y');
+    g.tri(21, 19, 27, 19, 24, 22, 'Y');
     // tail feathers
-    g.tri(35, 37, 44, 40, 34, 43, 'd');
-    // white face mask + belly
-    g.ellipse(18, 21, 8, 7, 'w');
-    g.ellipse(20, 37, 7, 6, 'w');
-    // beak
-    g.tri(7, 23, 15, 19, 15, 28, 'y');
-    g.tri(9, 25, 15, 24, 15, 28, 'Y');
+    g.tri(28, 43, 36, 47, 26, 47, 'd');
+    // talons planted
+    g.rect(16, 44, 5, 2, 'y');
+    g.rect(27, 44, 5, 2, 'y');
+    g.rect(15, 46, 7, 1, 'o');
+    g.rect(26, 46, 7, 1, 'o');
+    g.set(18, 44, 'o'); g.set(29, 44, 'o');     // toe splits
     g.outline('o');
     g.seam(['w'], ['b', 'l', 'd'], 'd');
-    g.seam(['y', 'Y'], ['w'], 'o');
-    // eyes in the mask
-    g.eye(14, 17, 4, 6);
-    g.eye(22, 17, 4, 6);
-    // talons
-    g.rect(16, 43, 4, 2, 'y');
-    g.rect(26, 43, 4, 2, 'y');
-    g.rect(15, 45, 6, 1, 'o');
-    g.rect(25, 45, 6, 1, 'o');
-    g.set(15, 43, 'o'); g.set(20, 43, 'o');
-    g.set(25, 43, 'o'); g.set(30, 43, 'o');
+    g.seam(['y', 'Y'], ['w', 'b'], 'o');
+    g.seam(['l', 'i'], ['b'], 'o');
+    // big sparkly eyes above the bib
+    g.rect(15, 12, 5, 7, 'o'); g.rect(16, 13, 2, 3, 'K');
+    g.rect(28, 12, 5, 7, 'o'); g.rect(29, 13, 2, 3, 'K');
   },
   back(g) {
-    // rear view: round blue back, crest on top, wing stubs both sides
-    g.ball(28, 22, 16, 16, 'b', 'l', 'd');
-    g.ellipse(23, 4, 2, 4, 'd');
-    g.ellipse(28, 3, 2, 5, 'b');
-    g.ellipse(33, 4, 2, 4, 'd');
-    g.ellipse(11, 22, 4, 9, 'd');                  // left wing
-    g.ellipse(45, 22, 4, 9, 'd');                  // right wing
-    g.tri(24, 36, 32, 36, 28, 42, 'd');            // tail tip
+    // rear: blue back, crest curl up top, wings at the sides, white hips
+    g.ball(28, 24, 15, 15, 'b', 'l', 'd');
+    g.ring(32, 5, 6, 5, 'l', 0.5, 150, 20);
+    g.tri(13, 26, 4, 38, 16, 36, 'd');
+    g.tri(43, 26, 52, 38, 40, 36, 'd');
+    g.ellipse(18, 36, 4, 4, 'w');
+    g.ellipse(38, 36, 4, 4, 'w');
+    g.tri(24, 38, 32, 38, 28, 45, 'd');
     g.outline('o');
-    g.line(20, 14, 24, 12, 'l', 1);
+    g.seam(['w'], ['b', 'l', 'd'], 'd');
+    g.line(22, 14, 27, 12, 'l', 1);
   }
 };
 
@@ -209,10 +221,11 @@ R.pebblamb = {
 // ===================================================== STARTER STAGE 2/3 ===
 
 R.verdoise = {
-  pal: { o: 'ink', h: 'leaf3', g: 'leaf2', e: 'leaf1', c: 'grn3', b: 'grn2', a: 'grn1', n: 'brn2', t: 'brn1', f: 'leaf2', K: 'white' },
+  pal: { o: 'ink', h: 'leaf3', g: 'leaf2', e: 'leaf1', c: 'brn3', b: 'brn2', a: 'brn1', n: 'brn1', m: 'grn2', t: 'brn1', f: 'leaf2', K: 'white' },
   draw(g) {
-    // bark-rimmed shell
+    // bark shell with mossy crown
     g.ball(31, 25, 13, 12, 'b', 'c', 'a');
+    g.ellipse(30, 16, 9, 4, 'm');                   // moss cap
     g.ellipse(31, 35, 12, 4, 'n');                  // bark rim
     g.tri(41, 28, 47, 31, 40, 34, 'g');             // tail
     g.ellipse(34, 39, 5, 4, 'e');                   // back leg
@@ -239,6 +252,7 @@ R.verdoise = {
   back(g) {
     g.ball(19, 12, 9, 8, 'g', 'h', null);
     g.ball(34, 24, 17, 15, 'b', 'c', 'a');
+    g.ellipse(33, 13, 10, 4, 'm');
     g.ellipse(34, 36, 14, 4, 'n');
     g.ellipse(31, 6, 6, 3, 'f');
     g.line(32, 10, 32, 7, 't', 2);
@@ -250,10 +264,11 @@ R.verdoise = {
 
 R.gaiadome = {
   w: 56, h: 56,
-  pal: { o: 'ink', h: 'leaf3', g: 'leaf2', e: 'leaf1', c: 'grn3', b: 'grn2', a: 'grn1', n: 'brn2', t: 'brn1', d: 'brn3', K: 'white' },
+  pal: { o: 'ink', h: 'leaf3', g: 'leaf2', e: 'leaf1', c: 'brn3', b: 'brn2', a: 'brn1', n: 'brn1', m: 'grn2', M: 'grn3', t: 'brn1', d: 'brn3', K: 'white' },
   draw(g) {
-    // mountain-dome shell with mossy top
+    // earthen dome with a broad mossy cap
     g.ball(35, 28, 17, 16, 'b', 'c', 'a');
+    g.ball(35, 19, 14, 7, 'm', 'M', null);
     g.ellipse(35, 41, 16, 5, 'n');                  // earth rim
     g.ellipse(35, 44, 14, 3, 'd');
     // small tree on the dome
@@ -2902,6 +2917,8 @@ R.__trainers = {
 };
 
 module.exports = R;
+
+
 
 
 
