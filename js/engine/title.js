@@ -30,11 +30,12 @@
           if (G.input.justPressed('start') || G.input.justPressed('A')) {
             G.audio.sfx('confirm');
             phase = 'menu';
-            sel = G.hasSave() ? 0 : 1;
+            sel = 0; // first item: CONTINUE if a save exists, else NEW GAME
           }
           return;
         }
         var items = this._items();
+        if (sel >= items.length) sel = 0;
         if (G.input.repeat('up')) { sel = (sel + items.length - 1) % items.length; G.audio.sfx('menuMove'); }
         if (G.input.repeat('down')) { sel = (sel + 1) % items.length; G.audio.sfx('menuMove'); }
         if (G.input.justPressed('B')) { phase = 'press'; G.audio.sfx('cancel'); return; }

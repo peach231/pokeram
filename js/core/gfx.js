@@ -69,10 +69,9 @@
       G.ctx.imageSmoothingEnabled = false;
 
       function resize() {
-        // fill the window: fractional scaling, lightly snapped to quarter
-        // steps so pixel widths stay tidy under nearest-neighbor
-        var scale = Math.min(window.innerWidth / W, window.innerHeight / H);
-        scale = Math.max(1, Math.floor(scale * 4) / 4);
+        // fill the window exactly: the game takes 100% of the limiting
+        // dimension (aspect preserved, nearest-neighbor keeps pixels crisp)
+        var scale = Math.max(1, Math.min(window.innerWidth / W, window.innerHeight / H));
         canvas.style.width = Math.floor(W * scale) + 'px';
         canvas.style.height = Math.floor(H * scale) + 'px';
       }
