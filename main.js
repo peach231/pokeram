@@ -13,6 +13,21 @@
     G.gfx.decodeAll();
     if (G.audio.init) G.audio.init();
 
+    // tiny mute button, top-right (synced with the M key)
+    var muteBtn = document.getElementById('mutebtn');
+    function syncMuteBtn() {
+      if (muteBtn) muteBtn.innerHTML = G.audio.muted ? '&#128263;' : '&#128266;';
+    }
+    G.syncMuteBtn = syncMuteBtn;
+    if (muteBtn) {
+      muteBtn.addEventListener('click', function () {
+        G.audio.unlock();
+        G.audio.toggleMute();
+        syncMuteBtn();
+        muteBtn.blur(); // give the keyboard back to the game
+      });
+    }
+
     if (location.hash === '#debug' && G.debug && G.debug.init) G.debug.init();
 
     var hashIs = function (tag) { return location.hash.indexOf('#' + tag) === 0; };
@@ -66,7 +81,10 @@
       acc += dt;
       while (acc >= STEP_MS) {
         G.input.step();
-        if (G.input.justPressed('mute')) G.audio.toggleMute();
+        if (G.input.justPressed('mute')) {
+          G.audio.toggleMute();
+          if (G.syncMuteBtn) G.syncMuteBtn();
+        }
         G.updateScenes();
         G.frame++;
         acc -= STEP_MS;
