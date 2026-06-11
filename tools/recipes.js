@@ -15,49 +15,52 @@ const R = {};
 R.sproutle = {
   pal: { o: 'ink', g: 'leaf2', h: 'leaf3', e: 'leaf1', s: 'brn2', t: 'brn1', u: 'brn3', w: 'tan1', f: 'grn2', F: 'grn3', K: 'white' },
   draw(g) {
-    // Turtwig formula: one connected quadruped hatchling, shell ON the back
-    // green torso, compact — everything attaches to this
-    g.ball(26, 31, 14, 7, 'g', 'h', 'e');
-    // four stubby legs clearly below the torso line
-    g.ball(14, 41, 4, 5, 'g', null, 'e');
-    g.ball(22, 42, 4, 5, 'g', null, 'e');
-    g.ball(31, 42, 4, 5, 'e', null, null);
-    g.ball(38, 41, 4, 5, 'e', null, null);
-    g.set(12, 44, 'o'); g.set(15, 44, 'o');     // toe notches
-    g.set(20, 45, 'o'); g.set(23, 45, 'o');
-    // tail nub at the rear
-    g.tri(39, 29, 45, 31, 38, 34, 'g');
-    // brown shell dome saddled on the back
-    g.ball(30, 23, 11, 9, 's', 'u', 't');
-    // sprout rooted in the shell's crown
-    g.line(30, 19, 31, 10, 'e', 2);
-    g.tri(31, 12, 24, 8, 30, 5, 'f');
-    g.tri(32, 12, 39, 8, 33, 5, 'f');
-    g.set(28, 8, 'F'); g.set(29, 8, 'F'); g.set(34, 7, 'F'); g.set(35, 7, 'F');
+    // Turtwig formula. One mass: legs are flat-bottomed columns drawn FIRST
+    // so the body overlaps their tops (pebblamb's proven leg technique);
+    // shell rides high so a thick green torso band stays visible below it.
+    g.rect(12, 36, 5, 8, 'g');                   // near-front leg
+    g.rect(19, 36, 4, 7, 'e');                   // far-front leg (darker, shorter)
+    g.rect(28, 36, 5, 8, 'g');                   // near-rear leg
+    g.rect(36, 36, 4, 7, 'e');                   // far-rear leg
+    g.tri(40, 31, 46, 34, 39, 38, 'g');          // tail nub
+    // body capsule — every limb roots into this
+    g.ball(27, 32, 13, 8, 'g', 'h', 'e');
+    // chest bulge: smooth front silhouette from chin down to the front leg
+    g.ellipse(13, 31, 5, 6, 'g');
+    // shell dome saddled on the back, dark rim at its lower edge
+    g.ball(30, 23, 10, 8, 's', 'u', 't');
+    g.ellipse(30, 30, 10, 2, 't');
     // big head rising at the front, turned down-left
-    g.ball(14, 20, 11, 11, 'g', 'h', 'e');
+    g.ball(15, 19, 10, 10, 'g', 'h', 'e');
+    // seedling sprig on the crown (Turtwig-style; the line grows it into
+    // the moss/tree shells of Verdoise and Gaiadome)
+    g.line(16, 9, 17, 4, 'e', 2);
+    g.tri(17, 5, 12, 2, 16, 1, 'f');
+    g.tri(18, 5, 23, 2, 19, 1, 'f');
+    g.set(14, 3, 'F'); g.set(21, 3, 'F');
     g.outline('o');
     g.seam(['s', 't', 'u'], ['g', 'h', 'e'], 'o');
-    g.seam(['f', 'F'], ['s', 'u'], 'o');
+    g.seam(['f', 'F'], ['g', 'h', 'e'], 'o');
     // face set down-left
-    g.eye(7, 17, 4, 5);
-    g.eye(17, 17, 4, 5);
-    g.line(9, 27, 14, 28, 'o', 1);
-    g.set(10, 28, 'o'); g.set(11, 28, 'o');     // open smile
-    g.set(5, 23, 'F'); g.set(22, 23, 'F');      // cheek dots
+    g.eye(7, 16, 4, 5);
+    g.eye(17, 16, 4, 5);
+    g.line(9, 25, 14, 25, 'o', 1);               // wide grin
+    g.set(8, 24, 'o'); g.set(15, 24, 'o');       // upturned corners
   },
   back(g) {
-    // rear: dominant brown shell with plate ring, head peeking above
+    // rear: dominant brown shell with plate ring, head peeking above,
+    // crown sprig visible over the top (matches the front design)
     g.ball(28, 12, 10, 8, 'g', 'h', null);
-    g.line(36, 8, 37, 4, 'e', 2);
-    g.tri(37, 5, 31, 2, 36, 0, 'f');
-    g.tri(38, 5, 44, 2, 39, 0, 'f');
+    g.line(27, 7, 28, 3, 'e', 2);
+    g.tri(28, 4, 23, 2, 27, 1, 'f');
+    g.tri(29, 4, 34, 2, 30, 1, 'f');
     g.ball(28, 26, 17, 13, 's', 'u', 't');
     g.ring(28, 26, 12, 9, 't', 0.25);
     g.ball(12, 36, 5, 4, 'g', null, 'e');
     g.ball(44, 36, 5, 4, 'g', null, 'e');
     g.outline('o');
     g.seam(['g', 'h'], ['s', 't', 'u'], 'o');
+    g.seam(['f'], ['g', 'h'], 'o');
   }
 };
 
@@ -67,44 +70,39 @@ R.sproutle = {
 R.aquilet = {
   pal: { o: 'ink', b: 'blu2', d: 'blu1', l: 'blu3', i: 'ice2', w: 'white', y: 'org2', Y: 'org3', K: 'white' },
   draw(g) {
-    // 3/4 battle pose: head down-left, one clean flipper against the body
-    // small tail fan trailing behind-right
-    g.tri(33, 37, 43, 41, 32, 45, 'd');
-    // body egg, angled
-    g.ball(25, 33, 11, 11, 'b', 'l', 'd');
-    // near flipper resting along the body's side
-    g.ellipse(15, 33, 4, 8, 'd');
-    g.set(14, 28, 'l');
-    // white belly toward the near side
-    g.ellipse(22, 38, 6, 6, 'w');
-    // head turned down-left, overlapping the body
-    g.ball(19, 15, 12, 11, 'b', 'l', 'd');
-    // crest: two swept feather tufts rooted in the crown
-    g.tri(23, 9, 30, 3, 29, 11, 'd');
-    g.tri(19, 8, 24, 4, 24, 10, 'l');
-    // white face bib on the leading side
-    g.ellipse(17, 19, 8, 6, 'w');
-    // beak pointing down-left
-    g.tri(8, 19, 17, 17, 15, 25, 'y');
-    g.tri(10, 20, 16, 19, 14, 23, 'Y');
-    // talons, near foot stepped forward
-    g.rect(13, 44, 5, 2, 'y');
-    g.rect(26, 45, 5, 2, 'y');
-    g.rect(12, 46, 7, 1, 'o');
-    g.rect(25, 47, 6, 1, 'o');
-    g.set(15, 44, 'o'); g.set(28, 45, 'o');     // toe splits
+    // Piplup formula: plump chick — big head merging straight into an egg
+    // body (no neck), ONE white chest patch, small side-pointing beak at
+    // eye level, light tufts above the crown (never dark marks on the face)
+    g.tri(33, 36, 41, 40, 32, 43, 'd');          // small tail fan
+    g.ball(25, 31, 10, 12, 'b', 'l', 'd');       // egg body
+    g.ball(20, 14, 11, 10, 'b', 'l', 'd');       // head, heavy overlap = one mass
+    // crest: two light tufts poking up from the crown into open space
+    g.tri(21, 5, 24, 1, 25, 7, 'b');
+    g.tri(17, 5, 19, 1, 21, 6, 'l');
+    // folded near wing: dark wedge hugging the trailing side
+    g.tri(30, 22, 35, 30, 29, 38, 'd');
+    // single white chest patch on the leading side
+    g.ellipse(20, 33, 6, 8, 'w');
+    // hooked beak pointing left at eye level — protrudes past the face so
+    // its orange interior survives the outline pass
+    g.tri(6, 16, 14, 13, 14, 19, 'y');
+    g.tri(9, 19, 14, 17, 13, 21, 'Y');
+    // talons under the body
+    g.rect(14, 43, 5, 2, 'y');
+    g.rect(24, 43, 5, 2, 'y');
+    g.set(16, 44, 'o'); g.set(26, 44, 'o');      // toe splits
     g.outline('o');
     g.seam(['w'], ['b', 'l', 'd'], 'd');
-    g.seam(['y', 'Y'], ['w', 'b'], 'o');
-    g.seam(['l'], ['b'], 'o');
-    // eyes set toward the beak side
-    g.eye(11, 11, 4, 5);
-    g.eye(21, 11, 4, 5);
+    g.seam(['y', 'Y'], ['w', 'b', 'l'], 'o');
+    // round chick eyes, beak rooted between and just below
+    g.eye(13, 9, 4, 5);
+    g.eye(21, 9, 4, 5);
   },
   back(g) {
-    // rear: blue back, crest curl up top, wings at the sides, white hips
+    // rear: blue back, crown tufts up top, wings at the sides, white hips
     g.ball(28, 24, 15, 15, 'b', 'l', 'd');
-    g.ring(32, 5, 6, 5, 'l', 0.5, 150, 20);
+    g.tri(27, 11, 31, 5, 32, 12, 'b');
+    g.tri(23, 10, 26, 5, 27, 11, 'l');
     g.tri(13, 26, 4, 38, 16, 36, 'd');
     g.tri(43, 26, 52, 38, 40, 36, 'd');
     g.ellipse(18, 36, 4, 4, 'w');
