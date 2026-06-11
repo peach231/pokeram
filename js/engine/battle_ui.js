@@ -367,7 +367,11 @@
       if (G.input.repeat('up') || G.input.repeat('down')) { menuSel ^= 2; G.audio.sfx('menuMove'); }
       if (G.input.justPressed('A')) {
         G.audio.sfx('confirm');
-        if (menuSel === 0) { phase = 'moves'; }
+        if (menuSel === 0) {
+          phase = 'moves';
+          // the cursor may point at a slot this creature doesn't have
+          if (moveSel >= battle.active('p').moves.length) moveSel = 0;
+        }
         else if (menuSel === 1) openBag();
         else if (menuSel === 2) openParty();
         else { startGen(battle.turn({ type: 'run' })); }
@@ -385,6 +389,7 @@
       if (G.input.justPressed('B')) { G.audio.sfx('cancel'); phase = 'menu'; return; }
       if (G.input.justPressed('A')) {
         var slot = mon.moves[moveSel];
+        if (!slot) { moveSel = 0; return; } // never act on a slot that doesn't exist
         var anyPp = mon.moves.some(function (ms) { return ms.pp > 0; });
         if (!anyPp) {
           G.audio.sfx('confirm');

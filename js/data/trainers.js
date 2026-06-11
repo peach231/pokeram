@@ -34,8 +34,8 @@
   });
 
   // ------------------------------------------------------------ route 1 ----
-  tr('r1_tom', { name: 'Youngster Tom', sprite: 'trainer_youngster', ai: 'basic', money: 80, party: [{ sp: 'cheepit', level: 4 }, { sp: 'scrapling', level: 5 }], intro: 'My shorts are comfy and my team is MIGHTY!', defeat: 'Mighty-ish. Mighty-adjacent.', music: 'battle' });
-  tr('r1_ana', { name: 'Lass Ana', sprite: 'trainer_lass', ai: 'basic', money: 80, party: [{ sp: 'fernfawn', level: 5 }], intro: 'Fernfawn and I have been practicing all week!', defeat: 'Back to practice, I suppose.', music: 'battle' });
+  tr('r1_tom', { name: 'Youngster Tom', sprite: 'trainer_youngster', ai: 'basic', money: 60, party: [{ sp: 'cheepit', level: 3 }], intro: 'My shorts are comfy and my team is MIGHTY!', defeat: 'Mighty-ish. Mighty-adjacent.', music: 'battle' });
+  tr('r1_ana', { name: 'Lass Ana', sprite: 'trainer_lass', ai: 'basic', money: 70, party: [{ sp: 'fernfawn', level: 4 }], intro: 'Fernfawn and I have been practicing all week!', defeat: 'Back to practice, I suppose.', music: 'battle' });
 
   // ------------------------------------------------------------ route 2 ----
   tr('r2_ben', { name: 'Youngster Ben', sprite: 'trainer_youngster', ai: 'basic', money: 120, party: [{ sp: 'nibbit', level: 8 }, { sp: 'cheepit', level: 8 }], intro: 'Route 2 is MY turf!', defeat: 'Turf under renovation.', music: 'battle' });
@@ -140,3 +140,4 @@
     });
   };
 })();
+

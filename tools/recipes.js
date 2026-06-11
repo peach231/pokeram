@@ -244,7 +244,7 @@ R.verdoise = {
     g.line(7, 17, 12, 17, 'o', 1);                  // brow
     g.line(15, 17, 20, 17, 'o', 1);
     g.eye(8, 18, 5, 5);
-    g.eye(16, 18, 4, 5);
+    g.eye(16, 18, 5, 5);
     g.line(11, 29, 15, 30, 'o', 1);
     g.set(33, 21, 'a'); g.set(34, 21, 'a');
     g.set(29, 29, 'a'); g.set(30, 29, 'a');
@@ -287,7 +287,7 @@ R.gaiadome = {
     g.seam(['n', 'd'], ['b', 'c', 'a'], 'o');
     // face: heavy-lidded eyes, broad jaw
     g.eye(8, 28, 5, 5);
-    g.eye(17, 28, 4, 5);
+    g.eye(17, 28, 5, 5);
     g.line(10, 39, 16, 40, 'o', 1);
     // moss speckles
     g.set(30, 20, 'a'); g.set(31, 20, 'a');
@@ -331,7 +331,7 @@ R.streagle = {
     // fierce eye line
     g.line(12, 12, 17, 12, 'o', 1);
     g.eye(13, 13, 4, 5);
-    g.eye(21, 13, 3, 5);
+    g.eye(21, 13, 4, 5);
     // talons
     g.rect(17, 42, 4, 3, 'y');
     g.rect(25, 43, 4, 2, 'y');
@@ -646,7 +646,7 @@ R.swiftrel = {
     g.seam(['w'], ['b', 'd'], 'd');
     g.line(14, 16, 19, 16, 'o', 1);
     g.eye(15, 17, 4, 5);
-    g.eye(23, 17, 3, 5);
+    g.eye(23, 17, 4, 5);
     g.line(19, 40, 19, 43, 'y', 2);
     g.line(25, 41, 25, 44, 'y', 2);
     g.rect(17, 43, 5, 1, 'o');
@@ -808,7 +808,7 @@ R.fernfawn = {
     g.outline('o');
     g.seam(['f', 'h'], ['b', 'd', 'w'], 'o');
     g.eye(11, 16, 4, 5);
-    g.eye(19, 16, 3, 5);
+    g.eye(19, 16, 4, 5);
     g.line(11, 23, 14, 24, 'o', 1);
   }
 };
@@ -835,7 +835,7 @@ R.thornbuck = {
     g.seam(['f', 'h'], ['b', 'd', 'w'], 'o');
     g.line(9, 17, 14, 17, 'o', 1);
     g.eye(10, 18, 4, 5);
-    g.eye(18, 18, 3, 5);
+    g.eye(18, 18, 4, 5);
     g.line(10, 25, 13, 26, 'o', 1);
   }
 };
@@ -868,7 +868,7 @@ R.sylvastag = {
     g.seam(['f'], ['b', 'd', 'w'], 'o');
     g.line(10, 19, 15, 19, 'o', 1);
     g.eye(11, 20, 4, 5);
-    g.eye(19, 20, 3, 5);
+    g.eye(19, 20, 4, 5);
     g.line(10, 27, 14, 28, 'o', 1);
     g.set(33, 25, 'p'); g.set(28, 33, 'p');     // glow dust
   }
@@ -937,7 +937,7 @@ R.shalite = {
     g.outline('o');
     g.seam(['c'], ['s', 'u', 't'], 'o');
     g.eye(16, 24, 5, 6);
-    g.eye(27, 24, 4, 6);
+    g.eye(27, 24, 5, 6);
     g.line(19, 34, 24, 34, 'o', 1);
     g.set(17, 18, 't'); g.set(30, 31, 't');     // cracks
     g.line(13, 28, 15, 30, 't', 1);
@@ -981,7 +981,7 @@ R.finling = {
     g.outline('o');
     g.seam(['w'], ['b', 'l', 'd'], 'd');
     g.eye(16, 20, 4, 6);
-    g.eye(24, 20, 3, 6);
+    g.eye(24, 20, 4, 6);
     g.line(13, 28, 16, 29, 'o', 1);
   }
 };
@@ -1003,7 +1003,7 @@ R.marlance = {
     g.seam(['s', 'i'], ['b', 'l', 'd', 'w'], 'o');
     g.line(15, 16, 21, 15, 'o', 1);
     g.eye(16, 17, 4, 5);
-    g.eye(24, 17, 3, 5);
+    g.eye(24, 17, 4, 5);
     // armored cheek
     g.line(19, 24, 25, 26, 'i', 1);
   }
@@ -1124,7 +1124,7 @@ R.gloamop = {
     g.tri(29, 35, 34, 41, 36, 34, 'p');
     g.outline('o');
     g.eye(17, 22, 5, 6);
-    g.eye(27, 22, 4, 6);
+    g.eye(27, 22, 5, 6);
     g.ellipse(22, 32, 2, 3, 'o');               // open mouth
     g.set(15, 18, 'l'); g.set(30, 17, 'l');     // glints
   }
@@ -1213,7 +1213,7 @@ R.gloopit = {
     g.ring(17, 33, 2, 2, 'l', 0.7);
     g.outline('o');
     g.eye(16, 26, 5, 6);
-    g.eye(27, 26, 4, 6);
+    g.eye(27, 26, 5, 6);
     g.ellipse(22, 36, 3, 2, 'o');               // goopy grin
   }
 };
@@ -1309,7 +1309,7 @@ R.chillip = {
     g.set(20, 12, 'k'); g.set(27, 10, 'k');
     g.outline('o');
     g.eye(19, 26, 4, 5);
-    g.eye(27, 26, 3, 5);
+    g.eye(27, 26, 4, 5);
     g.line(22, 33, 25, 33, 'o', 1);
   }
 };
@@ -1903,7 +1903,7 @@ R.duneling = {
     g.seam(['d'], ['b'], 'o');
     // shark face: one big eye this side, gill line, mouth
     g.eye(13, 21, 5, 5);
-    g.eye(25, 21, 4, 5);
+    g.eye(25, 21, 5, 5);
     g.line(8, 31, 13, 32, 'o', 1);              // mouth
     g.line(28, 28, 28, 32, 'd', 1);             // gill
     g.set(31, 38, 'd'); g.set(14, 39, 'd');     // sand ripples
@@ -2923,6 +2923,7 @@ R.__trainers = {
 };
 
 module.exports = R;
+
 
 
 
