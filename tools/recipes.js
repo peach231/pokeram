@@ -39,8 +39,8 @@ R.sproutle = {
     g.seam(['w'], ['s', 't', 'u'], 't');
     g.seam(['f', 'F'], ['g', 'h'], 'o');
     // face: big bright eyes, happy open mouth
-    g.eye(15, 11, 6, 7);
-    g.eye(27, 11, 6, 7);
+    g.eye(16, 13, 4, 5);
+    g.eye(28, 13, 4, 5);
     g.line(20, 23, 26, 23, 'o', 1);
     g.set(21, 24, 'o'); g.set(22, 24, 'o'); g.set(23, 24, 'o');  // open smile
     g.set(13, 19, 'F'); g.set(33, 19, 'F');     // cheek dots
@@ -71,10 +71,10 @@ R.aquilet = {
     g.set(31, 8, 'i'); g.set(32, 9, 'i');
     // body egg, smaller than the head
     g.ball(24, 35, 11, 11, 'b', 'l', 'd');
-    // angled wings, tips out like little flippers
-    g.tri(12, 30, 4, 42, 15, 40, 'd');
-    g.tri(36, 30, 44, 42, 33, 40, 'd');
-    g.set(8, 38, 'l'); g.set(40, 38, 'l');      // feather edge
+    // wings raised at shoulder height, tips angled out
+    g.tri(12, 25, 3, 35, 14, 34, 'd');
+    g.tri(36, 25, 45, 35, 34, 34, 'd');
+    g.set(6, 31, 'l'); g.set(42, 31, 'l');      // feather edge
     // white belly
     g.ellipse(24, 38, 6, 6, 'w');
     // big round head
@@ -97,8 +97,8 @@ R.aquilet = {
     g.seam(['y', 'Y'], ['w', 'b'], 'o');
     g.seam(['l', 'i'], ['b'], 'o');
     // big sparkly eyes above the bib
-    g.eye(15, 11, 6, 7);
-    g.eye(28, 11, 6, 7);
+    g.eye(16, 12, 4, 5);
+    g.eye(28, 12, 4, 5);
   },
   back(g) {
     // rear: blue back, crest curl up top, wings at the sides, white hips
@@ -1067,23 +1067,24 @@ R.voltail = {
 R.moleling = {
   pal: { o: 'ink', b: 'brn2', d: 'brn1', w: 'tan0', p: 'skn2', K: 'white' },
   draw(g) {
-    g.ball(24, 30, 12, 12, 'b', 'w', 'd');
-    // snout
-    g.ellipse(16, 26, 7, 5, 'w');
-    g.ellipse(11, 25, 3, 2, 'p');               // big pink nose
-    // digging claws
-    g.ellipse(11, 36, 5, 4, 'p');
-    g.ellipse(37, 36, 5, 4, 'p');
-    g.set(8, 38, 'o'); g.set(11, 38, 'o'); g.set(14, 38, 'o');
-    g.set(34, 38, 'o'); g.set(37, 38, 'o'); g.set(40, 38, 'o');
+    // dirt mound it pops out of
+    g.ellipse(24, 41, 16, 5, 'd');
+    g.ellipse(24, 40, 14, 4, 'w');
+    // dome body
+    g.ball(24, 26, 12, 14, 'b', 'w', 'd');
+    // paws out the sides
+    g.ellipse(9, 33, 4, 3, 'p');
+    g.ellipse(39, 33, 4, 3, 'p');
     g.outline('o');
     g.seam(['p'], ['b', 'w', 'd'], 'o');
-    // squinty eyes
-    g.line(18, 20, 21, 20, 'o', 1);
-    g.line(26, 20, 29, 20, 'o', 1);
-    g.line(15, 30, 18, 31, 'o', 1);
-    // fur tufts
-    g.set(22, 17, 'd'); g.set(27, 16, 'd');
+    // big pink nose, front and center
+    g.ellipse(24, 27, 4, 3, 'p');
+    g.set(22, 26, 'K');
+    // round dot eyes above
+    g.eyeDot(18, 20, 1.5);
+    g.eyeDot(30, 20, 1.5);
+    g.set(8, 35, 'o'); g.set(11, 35, 'o');      // claw nicks
+    g.set(37, 35, 'o'); g.set(40, 35, 'o');
   }
 };
 
@@ -1177,22 +1178,24 @@ R.psymote = {
 R.mentavis = {
   pal: { o: 'ink', p: 'pnk1', q: 'pnk0', l: 'pnk2', s: 'pur2', w: 'white', K: 'white' },
   draw(g) {
+    // long ear-fins sweeping down from the crown
+    g.tri(10, 14, 4, 30, 14, 22, 'q');
+    g.tri(38, 14, 44, 30, 34, 22, 'q');
+    // robed body, widening to the hem
+    g.tri(13, 44, 24, 18, 35, 44, 's');
+    g.tri(17, 44, 24, 30, 31, 44, 'q');
     // great cranium
-    g.ball(24, 16, 13, 12, 'p', 'l', 'q');
-    g.ring(24, 14, 9, 7, 'l', 0.25);
-    // slender body
-    g.ellipse(24, 35, 8, 10, 's');
-    // arms raised
-    g.line(14, 30, 8, 24, 's', 2);
-    g.line(34, 30, 40, 24, 's', 2);
-    g.ellipse(7, 22, 3, 3, 'p');
-    g.ellipse(41, 22, 3, 3, 'p');
+    g.ball(24, 14, 12, 11, 'p', 'l', 'q');
+    // hands folded at the chest
+    g.ellipse(21, 30, 3, 2, 'p');
+    g.ellipse(27, 30, 3, 2, 'p');
     g.outline('o');
-    g.seam(['p', 'l', 'q'], ['s'], 'o');
-    // intense eyes
-    g.rect(16, 18, 5, 4, 'o'); g.set(17, 19, 'K'); g.set(18, 19, 'K');
-    g.rect(26, 18, 5, 4, 'o'); g.set(27, 19, 'K');
-    g.set(11, 8, 'l'); g.set(37, 9, 'l'); g.set(24, 3, 'l');
+    g.seam(['p', 'l'], ['s', 'q'], 'o');
+    // calm knowing eyes
+    g.eyeAlmond(15, 13, 6, 4);
+    g.eyeAlmond(26, 13, 6, 4);
+    // psychic motes
+    g.set(8, 6, 'l'); g.set(40, 7, 'l'); g.set(24, 1, 'l');
   }
 };
 
@@ -1277,8 +1280,8 @@ R.cobrawl = {
     // boxing fists
     g.ball(10, 26, 5, 5, 'r', null, null);
     g.ball(38, 26, 5, 5, 'r', null, null);
-    g.line(17, 24, 12, 26, 'p', 3);
-    g.line(31, 24, 36, 26, 'p', 3);
+    g.line(17, 24, 12, 26, 'p', 4);
+    g.line(31, 24, 36, 26, 'p', 4);
     // hood eyespots
     g.set(14, 12, 'y'); g.set(15, 12, 'y');
     g.set(33, 12, 'y'); g.set(34, 12, 'y');
@@ -1314,12 +1317,12 @@ R.chillip = {
 R.glacielle = {
   pal: { o: 'ink', i: 'ice1', j: 'ice2', k: 'ice3', w: 'white', g: 'grn2', K: 'white' },
   draw(g) {
-    // ice petal ring
-    g.tri(24, 18, 14, 2, 30, 8, 'j');
-    g.tri(16, 22, 2, 12, 8, 26, 'j');
-    g.tri(32, 22, 46, 12, 40, 26, 'j');
-    g.tri(17, 30, 6, 40, 16, 42, 'k');
-    g.tri(31, 30, 42, 40, 32, 42, 'k');
+    // ice petal ring, bases rooted under the face
+    g.tri(16, 22, 24, 0, 32, 22, 'j');
+    g.tri(15, 21, 0, 10, 17, 32, 'j');
+    g.tri(33, 21, 48, 10, 31, 32, 'j');
+    g.tri(16, 28, 4, 42, 25, 33, 'k');
+    g.tri(32, 28, 44, 42, 23, 33, 'k');
     // face core
     g.ball(24, 25, 10, 10, 'i', 'k', null);
     g.line(24, 38, 24, 45, 'g', 2);
@@ -1345,17 +1348,17 @@ R.borealisk = {
     g.tri(26, 16, 18, 4, 32, 8, 'k');
     g.tri(32, 14, 30, 0, 42, 6, 'k');
     // head, prominent
-    g.ball(37, 12, 10, 8, 'i', 'k', 'd');
-    g.tri(45, 7, 52, 4, 47, 14, 'j');           // horn
+    g.ball(36, 12, 11, 9, 'i', 'k', 'd');
+    g.tri(45, 6, 53, 3, 47, 14, 'j');           // horn
+    g.line(28, 16, 36, 18, 'd', 1);             // jaw line
     // belly ridges
     g.line(14, 41, 18, 40, 'w', 1);
     g.line(24, 35, 28, 33, 'w', 1);
     g.line(32, 26, 35, 23, 'w', 1);
     g.outline('o');
     g.seam(['k'], ['i', 'd'], 'o');
-    g.line(31, 9, 36, 9, 'o', 1);
-    g.eye(32, 10, 4, 4);
-    g.set(28, 15, 'w');                          // fang
+    g.eyeAlmond(30, 9, 6, 4);
+    g.set(28, 16, 'w');                          // fang
   }
 };
 
@@ -1886,22 +1889,24 @@ R.smeltitan = {
 R.duneling = {
   pal: { o: 'ink', b: 'tan0', d: 'brn3', w: 'tan1', s: 'yel1', K: 'white' },
   draw(g) {
-    // sand mound it swims in
-    g.ellipse(24, 40, 18, 5, 'w');
-    g.ellipse(24, 39, 16, 4, 'b');
-    // upper body breaching
-    g.ball(22, 28, 11, 11, 'b', 'w', 'd');
-    // dorsal fin
-    g.tri(24, 16, 30, 6, 33, 18, 'd');
-    // snout
-    g.ellipse(14, 26, 6, 4, 'w');
+    // sand it swims through
+    g.ellipse(24, 41, 18, 5, 'w');
+    g.ellipse(24, 40, 16, 4, 'b');
+    // breaching body, nose tipped up-left
+    g.ball(21, 27, 13, 12, 'b', 'w', 'd');
+    g.tri(6, 28, 14, 20, 14, 34, 'b');          // snout wedge
+    // tall dorsal fin
+    g.tri(22, 18, 31, 2, 34, 20, 'd');
+    // pale belly toward the sand
+    g.ellipse(19, 34, 9, 5, 'w');
     g.outline('o');
-    g.seam(['b', 'd'], ['w'], 'd');
-    g.line(13, 20, 18, 20, 'o', 1);
-    g.eye(14, 21, 4, 4);
-    g.eye(22, 21, 4, 4);
-    g.set(12, 27, 'o'); g.set(13, 27, 'o');
-    g.set(30, 37, 'd'); g.set(16, 38, 'd');     // sand ripples
+    g.seam(['d'], ['b'], 'o');
+    // shark face: one big eye this side, gill line, mouth
+    g.eye(13, 21, 5, 5);
+    g.eye(25, 21, 4, 5);
+    g.line(8, 31, 13, 32, 'o', 1);              // mouth
+    g.line(28, 28, 28, 32, 'd', 1);             // gill
+    g.set(31, 38, 'd'); g.set(14, 39, 'd');     // sand ripples
   }
 };
 
@@ -2097,9 +2102,9 @@ R.sylphette = {
     // head + circlet
     g.ball(24, 14, 8, 8, 'w', null, 'l');
     g.line(18, 8, 30, 8, 'y', 1);
-    // arms in dance
-    g.line(15, 24, 8, 18, 'w', 2);
-    g.line(33, 24, 40, 18, 'w', 2);
+    // soft sleeve arms at the gown's sides
+    g.ellipse(13, 27, 3, 2, 'w');
+    g.ellipse(35, 27, 3, 2, 'w');
     g.outline('o');
     g.seam(['l'], ['p', 'q', 'w'], 'o');
     g.eye(20, 12, 3, 4);
@@ -2569,9 +2574,10 @@ R.crystallith = {
     g.tri(4, 26, 0, 14, 12, 20, 'c');
     g.tri(38, 22, 46, 10, 46, 26, 'c');
     g.tri(20, 6, 26, 0, 30, 8, 'i');
-    // gem core
-    g.ball(23, 26, 6, 6, 'C', 'c', null);
-    g.set(21, 24, 'i');
+    // faceted diamond core
+    g.tri(23, 21, 17, 27, 29, 27, 'i');
+    g.tri(17, 27, 29, 27, 23, 34, 'c');
+    g.set(21, 25, 'K');
     // facet lines
     g.line(18, 12, 14, 34, 't', 1);
     g.line(28, 16, 33, 36, 't', 1);
@@ -2917,6 +2923,9 @@ R.__trainers = {
 };
 
 module.exports = R;
+
+
+
 
 
 

@@ -166,16 +166,9 @@ Grid.prototype.eye = function (x, y, w, h) {
   const rx = (w - 1) / 2 + 0.3, ry = (h - 1) / 2 + 0.3;
   const cx = x + (w - 1) / 2, cy = y + (h - 1) / 2;
   this.ellipse(cx, cy, Math.max(1, rx), Math.max(1, ry), 'o');
-  // a single restrained glint, like the real sprites — bigger eyes earn a
-  // 2x2 catch-light, everything else gets one bright pixel
-  if (w >= 5 && h >= 6) {
-    const gx = Math.max(x + 1, Math.round(cx - rx * 0.35));
-    const gy = Math.max(y + 1, Math.round(cy - ry * 0.35));
-    this.rect(gx, gy, 2, 2, 'K');
-  } else if (w >= 4 && h >= 4) {
+  // real-sprite doctrine: eyes are solid dark; at most ONE bright pixel
+  if (w >= 4 && h >= 4) {
     this.set(Math.max(x + 1, Math.round(cx - rx * 0.3)), Math.max(y + 1, Math.round(cy - ry * 0.3)), 'K');
-  } else {
-    this.set(Math.round(cx), Math.round(cy - 0.5), 'K');
   }
 };
 
