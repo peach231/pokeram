@@ -14,7 +14,7 @@ and sound effect is generated from code.
 | Z (or Space) | A button — confirm, talk, interact |
 | X (or Esc) | B button — cancel, run from menus |
 | Enter | Start — open the menu (Dex / Party / Bag / Save) |
-| Ctrl or Shift (hold) | Run |
+| Shift (hold) | Run |
 | M | Mute |
 | F | Fullscreen |
 
@@ -42,6 +42,7 @@ A hint: a never-fail **Myth Orb** is hidden in the deepest part of Hollowdeep.
 - Debug URL hashes: `#gallery&p=N` (sprite gallery), `#wild&ff=400` /
   `#battle&auto` (battle harness), `#map=<id>,<x>,<y>` (spawn anywhere).
 - See `BUILD_NOTES.md` for architecture details.
+
 
 
 

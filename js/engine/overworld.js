@@ -162,7 +162,7 @@
       }
 
       if (p.moving) {
-        p.step += (G.input.held.run ? 2 : 1); // hold Ctrl/Shift to run
+        p.step += (G.input.held.run ? 2 : 1); // hold Shift to run
         if (p.step >= 16) {
           p.moving = false;
           p.step = 0;
@@ -403,7 +403,7 @@
       ctx.fillStyle = 'rgba(26,28,44,0.72)';
       ctx.fillRect(0, G.SCREEN_H - 24, 124, 24);
       G.text(ctx, 'Arrows Move  Z Talk', 4, G.SCREEN_H - 22, G.C.white);
-      G.text(ctx, 'Ctrl Run  Enter Menu', 4, G.SCREEN_H - 11, G.C.lgry);
+      G.text(ctx, 'Shift Run  Enter Menu', 4, G.SCREEN_H - 11, G.C.lgry);
     },
 
     _drawLayer: function (ctx, layer, x0, y0, x1, y1, cam) {
@@ -641,3 +641,4 @@
     };
   };
 })();
+

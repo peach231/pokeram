@@ -7,7 +7,7 @@
     arrowup: 'up', arrowdown: 'down', arrowleft: 'left', arrowright: 'right',
     w: 'up', s: 'down', a: 'left', d: 'right',
     z: 'A', x: 'B', enter: 'start', m: 'mute',
-    ' ': 'A', escape: 'B', backspace: 'B', shift: 'run', control: 'run'
+    ' ': 'A', escape: 'B', backspace: 'B', shift: 'run'
   };
 
   var held = {};          // button -> true while physically down
