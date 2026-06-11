@@ -162,7 +162,7 @@
       }
 
       if (p.moving) {
-        p.step += ((G.input.held.run || G.input.held.B) ? 2 : 1); // hold B/Shift to run
+        p.step += (G.input.held.run ? 2 : 1); // hold Ctrl/Shift to run
         if (p.step >= 16) {
           p.moving = false;
           p.step = 0;
@@ -185,7 +185,7 @@
 
       if (dir !== p.dir) {
         p.dir = dir;
-        p.turnLock = 5; // face first; keep holding to step
+        p.turnLock = 2; // brief face-first beat; keep holding to step
         return;
       }
       if (p.turnLock > 0) { p.turnLock--; return; }
@@ -326,6 +326,13 @@
           }
         }
       }
+      // talk across counters: nurse/clerk stand one tile beyond the desk
+      if (!npc) {
+        var facedName = w.tileNameAt('deco', fx, fy) || w.tileNameAt('ground', fx, fy);
+        if (facedName === 'icounter') {
+          npc = w.npcAt(fx + d.dx, fy + d.dy);
+        }
+      }
       if (npc) {
         if (!npc.obj) npc.dir = G.OPPOSITE_DIR[p.dir]; // face the player
         if (G.hooks.interact && G.hooks.interact(npc)) return;
@@ -394,9 +401,9 @@
 
       // controls hint, bottom-left
       ctx.fillStyle = 'rgba(26,28,44,0.72)';
-      ctx.fillRect(0, G.SCREEN_H - 24, 118, 24);
+      ctx.fillRect(0, G.SCREEN_H - 24, 124, 24);
       G.text(ctx, 'Arrows Move  Z Talk', 4, G.SCREEN_H - 22, G.C.white);
-      G.text(ctx, 'X Run  Enter Menu', 4, G.SCREEN_H - 11, G.C.lgry);
+      G.text(ctx, 'Ctrl Run  Enter Menu', 4, G.SCREEN_H - 11, G.C.lgry);
     },
 
     _drawLayer: function (ctx, layer, x0, y0, x1, y1, cam) {
@@ -516,8 +523,10 @@
     if (G.world.map && G.world.map.music) G.audio.playMusic(G.world.map.music);
 
     if (result === 'caught' && battle.caughtMon) {
+      var firstCatch = !G.player.dexCaught[battle.caughtMon.sp];
       G.player.dexCaught[battle.caughtMon.sp] = 1;
       if (G.player.party.length < 6) G.player.party.push(battle.caughtMon);
+      if (firstCatch && G.CaughtScene) G.pushScene(G.CaughtScene(battle.caughtMon));
     }
 
     if (result === 'win' && battle.pendingEvolutions.length && G.EvolutionScene) {

@@ -382,22 +382,22 @@
     'RRRRRRRRRRRRRRRR'
   ]);
   T('t_roof_tr', RF, [
-    'oooooooooooooo..',
-    'qqqqqqqqqqqqqro.',
-    'RRRRRRRRRRRRRro.',
-    'RRRRRRRRRRRRRro.',
-    'RRRRRRRRRRRRRro.',
-    'RRRRRRRRRRRRRro.',
-    'rrrrrrrrrrrrrro.',
-    'RRRRRRRRRRRRRro.',
-    'RRRRRRRRRRRRRro.',
-    'RRRRRRRRRRRRRro.',
-    'RRRRRRRRRRRRRro.',
-    'rrrrrrrrrrrrrro.',
-    'RRRRRRRRRRRRRro.',
-    'RRRRRRRRRRRRRro.',
-    'RRRRRRRRRRRRRro.',
-    'RRRRRRRRRRRRRro.'
+    'ooooooooooooooo.',
+    'qqqqqqqqqqqqqqro',
+    'RRRRRRRRRRRRRRro',
+    'RRRRRRRRRRRRRRro',
+    'RRRRRRRRRRRRRRro',
+    'RRRRRRRRRRRRRRro',
+    'rrrrrrrrrrrrrrro',
+    'RRRRRRRRRRRRRRro',
+    'RRRRRRRRRRRRRRro',
+    'RRRRRRRRRRRRRRro',
+    'RRRRRRRRRRRRRRro',
+    'rrrrrrrrrrrrrrro',
+    'RRRRRRRRRRRRRRro',
+    'RRRRRRRRRRRRRRro',
+    'RRRRRRRRRRRRRRro',
+    'RRRRRRRRRRRRRRro'
   ]);
   T('t_roof_bl', RF, [
     'oqRRRRRRRRRRRRRR',
@@ -414,8 +414,8 @@
     'oqRRRRRRRRRRRRRR',
     'oqrrrrrrrrrrrrrr',
     'oqRRRRRRRRRRRRRR',
-    '.orrrrrrrrrrrrrr',
-    '..oooooooooooooo'
+    'oorrrrrrrrrrrrrr',
+    'oooooooooooooooo'
   ]);
   T('t_roof_bm', RF, [
     'RRRRRRRRRRRRRRRR',
@@ -436,22 +436,22 @@
     'oooooooooooooooo'
   ]);
   T('t_roof_br', RF, [
-    'RRRRRRRRRRRRRro.',
-    'RRRRRRRRRRRRRro.',
-    'rrrrrrrrrrrrrro.',
-    'RRRRRRRRRRRRRro.',
-    'RRRRRRRRRRRRRro.',
-    'RRRRRRRRRRRRRro.',
-    'RRRRRRRRRRRRRro.',
-    'rrrrrrrrrrrrrro.',
-    'RRRRRRRRRRRRRro.',
-    'RRRRRRRRRRRRRro.',
-    'RRRRRRRRRRRRRro.',
-    'RRRRRRRRRRRRRro.',
-    'rrrrrrrrrrrrrro.',
-    'RRRRRRRRRRRRRro.',
-    'rrrrrrrrrrrroo..',
-    'oooooooooooooo..'
+    'RRRRRRRRRRRRRRro',
+    'RRRRRRRRRRRRRRro',
+    'rrrrrrrrrrrrrrro',
+    'RRRRRRRRRRRRRRro',
+    'RRRRRRRRRRRRRRro',
+    'RRRRRRRRRRRRRRro',
+    'RRRRRRRRRRRRRRro',
+    'rrrrrrrrrrrrrrro',
+    'RRRRRRRRRRRRRRro',
+    'RRRRRRRRRRRRRRro',
+    'RRRRRRRRRRRRRRro',
+    'RRRRRRRRRRRRRRro',
+    'rrrrrrrrrrrrrrro',
+    'RRRRRRRRRRRRRRro',
+    'rrrrrrrrrrrrrroo',
+    'oooooooooooooooo'
   ]);
 
   var WA = { o: C.ink, w: C.pale, l: C.lgry };
@@ -986,6 +986,62 @@
     'oooooooooooooooo'
   ]);
 
+  // ------------------------------ rooftop markers (heal / shop / gym) -------
+  T('t_hroofx', { o: C.ink, R: C.pnk1, r: C.pnk0, w: C.white }, [
+    'RRRRRRRRRRRRRRRR',
+    'RRRRRRRRRRRRRRRR',
+    'RRRRRooooooRRRRR',
+    'RRRRRowwwwoRRRRR',
+    'RRoooowwwwooooRR',
+    'RRowwwwwwwwwwoRR',
+    'RRowwwwwwwwwwoRR',
+    'RRowwwwwwwwwwoRR',
+    'RRowwwwwwwwwwoRR',
+    'RRoooowwwwooooRR',
+    'RRRRRowwwwoRRRRR',
+    'RRRRRowwwwoRRRRR',
+    'RRRRRooooooRRRRR',
+    'rrrrrrrrrrrrrrrr',
+    'RRRRRRRRRRRRRRRR',
+    'RRRRRRRRRRRRRRRR'
+  ]);
+  T('t_sroofx', { o: C.ink, R: C.grn2, r: C.grn1, y: C.yel1, Y: C.yel2 }, [
+    'RRRRRRRRRRRRRRRR',
+    'RRRRRRRRRRRRRRRR',
+    'RRRRRooooooRRRRR',
+    'RRRooyyyyyyooRRR',
+    'RRoyyYYyyyyyyoRR',
+    'RRoyYyyyyooyyoRR',
+    'RRoyYyyyoyyyyoRR',
+    'RRoyyyyoyyyyyoRR',
+    'RRoyyyoyyyyYyoRR',
+    'RRoyyoyyyyyYyoRR',
+    'RRoyyyyyyYYyyoRR',
+    'RRRooyyyyyyooRRR',
+    'RRRRRooooooRRRRR',
+    'rrrrrrrrrrrrrrrr',
+    'RRRRRRRRRRRRRRRR',
+    'RRRRRRRRRRRRRRRR'
+  ]);
+  T('t_lroofx', { o: C.ink, R: C.blu2, r: C.blu1, y: C.yel1, Y: C.yel2 }, [
+    'RRRRRRRRRRRRRRRR',
+    'RRRRRRRRRRRRRRRR',
+    'RRRRRRRooRRRRRRR',
+    'RRRRRRoYYoRRRRRR',
+    'RRRRRoYYYYoRRRRR',
+    'RRRRoYYyyYYoRRRR',
+    'RRRoYYyyyyYYoRRR',
+    'RRoYYyyyyyyYYoRR',
+    'RRoyYyyyyyyYyoRR',
+    'RRRoyYyyyyYyoRRR',
+    'RRRRoyYyyYyoRRRR',
+    'RRRRRoyyyyoRRRRR',
+    'RRRRRRoyyoRRRRRR',
+    'RRRRRRRooRRRRRRR',
+    'rrrrrrrrrrrrrrrr',
+    'RRRRRRRRRRRRRRRR'
+  ]);
+
   // ------------------------------------- heal / shop / gym facade pieces ----
   G.ART.t_hroof_tl = { base: 't_roof_tl', pal: { o: C.ink, q: C.pnk2, R: C.pnk1, r: C.pnk0 } };
   G.ART.t_hroof_tm = { base: 't_roof_tm', pal: { o: C.ink, q: C.pnk2, R: C.pnk1, r: C.pnk0 } };
@@ -1213,6 +1269,9 @@
     sroof_tr: { img: 't_sroof_tr', solid: true }, sroof_bl: { img: 't_sroof_bl', solid: true },
     sroof_bm: { img: 't_sroof_bm', solid: true }, sroof_br: { img: 't_sroof_br', solid: true },
     healsign: { img: 't_healsign', solid: true },
+    hroofx: { img: 't_hroofx', solid: true },
+    sroofx: { img: 't_sroofx', solid: true },
+    lroofx: { img: 't_lroofx', solid: true },
     shopsign: { img: 't_shopsign', solid: true },
     gymdoor:  { img: 't_gymdoor' },
 
@@ -1223,3 +1282,5 @@
     statue:   { img: 't_statue', solid: true }
   };
 })();
+
+

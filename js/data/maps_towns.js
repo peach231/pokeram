@@ -23,7 +23,8 @@
     'i': 'sroof_bl', 'j': 'sroof_bm', 'k': 'sroof_br', '$': 'shopsign',
     'Y': 'gymdoor', '~': 'water',
     '[': 'shore_w', ']': 'shore_e', '^': 'shore_n', '_': 'shore_s',
-    '%': 'sand', '#': 'cliff', '*': 'rock'
+    '%': 'sand', '#': 'cliff', '*': 'rock',
+    '!': 'hroofx', '@': 'sroofx', '&': 'lroofx'
   };
 
   // shared interior legend
@@ -108,8 +109,8 @@
       'tutututututututututututu',
       'vxvxvxvxvxvxvxvxvxvxvxvx',
       'tu....................tu',
-      'vx.ABBBBC.............vx',
-      'tu.abbbbc...7889.qrrz.tu',
+      'vx.AB&BBC.............vx',
+      'tu.abbbbc...7!89.q@rz.tu',
       'vx.LMYYML...dmmh.ijjk.vx',
       'tu..........W+DW.W$DW.tu',
       'vxnnnnnnnnnnnnnnnnnnnnvx',
@@ -132,11 +133,11 @@
       { x: 11, y: 19, to: 'route1', tx: 9, ty: 1, dir: 'down' },
       { x: 23, y: 8, to: 'route2', tx: 1, ty: 8, dir: 'right' },
       { x: 23, y: 9, to: 'route2', tx: 1, ty: 9, dir: 'right' },
-      { x: 4, y: 5, to: 'gym1', tx: 5, ty: 10, dir: 'up' },
       { x: 5, y: 5, to: 'gym1', tx: 5, ty: 10, dir: 'up' },
+      { x: 6, y: 5, to: 'gym1', tx: 5, ty: 10, dir: 'up' },
       { x: 14, y: 6, to: 'heal_cobblemarch', tx: 4, ty: 7, dir: 'up' },
       { x: 19, y: 6, to: 'shop_cobblemarch', tx: 4, ty: 7, dir: 'up' },
-      { x: 6, y: 12, to: 'house_cobble', tx: 4, ty: 6, dir: 'up' }
+      { x: 7, y: 12, to: 'house_cobble', tx: 4, ty: 6, dir: 'up' }
     ],
     signs: [
       { x: 13, y: 7, text: 'COBBLEMARCH — Old stones, new beginnings.' },
@@ -159,14 +160,14 @@
     ground: pad([
       'tututututututututututututu',
       'vxvxvxvxvxvxvxvxvxvxvxvxvx',
-      'tu......7889.qrrz.......tu',
+      'tu......7!89.q@rz.......tu',
       'vx......dmmh.ijjk.......vx',
       'tu......W+DW.W$DW.......tu',
       'vx......................vx',
       'tunnnnnnnnnnnnnnnnnnnnnntu',
       'vxssssssssssssssssssssssvx',
       'tu..........,...........tu',
-      'vx.ABBBBC...........f...pp',
+      'vx.AB&BBC...........f...pp',
       'pp.abbbbc...............pp',
       'pp.LMYYML......1223.....tu',
       'tu.............4556.....vx',
@@ -184,11 +185,11 @@
       { x: 25, y: 10, to: 'verdantforest', tx: 1, ty: 13, dir: 'right' },
       { x: 0, y: 10, to: 'route3', tx: 32, ty: 8, dir: 'left' },
       { x: 0, y: 11, to: 'route3', tx: 32, ty: 9, dir: 'left' },
-      { x: 4, y: 11, to: 'gym2', tx: 5, ty: 10, dir: 'up' },
       { x: 5, y: 11, to: 'gym2', tx: 5, ty: 10, dir: 'up' },
-      { x: 9, y: 4, to: 'heal_brinehollow', tx: 4, ty: 7, dir: 'up' },
-      { x: 14, y: 4, to: 'shop_brinehollow', tx: 4, ty: 7, dir: 'up' },
-      { x: 16, y: 13, to: 'house_brine', tx: 4, ty: 6, dir: 'up' }
+      { x: 6, y: 11, to: 'gym2', tx: 5, ty: 10, dir: 'up' },
+      { x: 10, y: 4, to: 'heal_brinehollow', tx: 4, ty: 7, dir: 'up' },
+      { x: 15, y: 4, to: 'shop_brinehollow', tx: 4, ty: 7, dir: 'up' },
+      { x: 17, y: 13, to: 'house_brine', tx: 4, ty: 6, dir: 'up' }
     ],
     signs: [
       { x: 12, y: 8, text: 'BRINEHOLLOW PORT — The sea remembers every sailor.' },
@@ -212,14 +213,14 @@
       'tutututututuppvxtututututu',
       'vxvxvxvxvxvxppvxvxvxvxvxvx',
       'tu..........pp..........tu',
-      'vx.ABBBBC...pp...7889...vx',
+      'vx.AB&BBC...pp...7!89...vx',
       'tu.abbbbc...pp...dmmh...tu',
       'vx.LMYYML...pp...W+DW...vx',
       'tu..........pp..........tu',
       'vxnnnnnnnnnnppnnnnnnnnnnvx',
       'tussssssssssppsssssssssstu',
       'vx..........pp..........pp',
-      'tu...qrrz...pp..1223....pp',
+      'tu...q@rz...pp..1223....pp',
       'vx...ijjk...pp..4556....tu',
       'tu...W$DW...pp..WNDW....vx',
       'vx..........pp..........tu',
@@ -238,11 +239,11 @@
       { x: 13, y: 0, to: 'route4', tx: 13, ty: 26, dir: 'up' },
       { x: 25, y: 9, to: 'route3', tx: 1, ty: 8, dir: 'right' },
       { x: 25, y: 10, to: 'route3', tx: 1, ty: 9, dir: 'right' },
-      { x: 4, y: 5, to: 'gym3', tx: 5, ty: 10, dir: 'up' },
       { x: 5, y: 5, to: 'gym3', tx: 5, ty: 10, dir: 'up' },
-      { x: 18, y: 5, to: 'heal_coilgate', tx: 4, ty: 7, dir: 'up' },
-      { x: 6, y: 12, to: 'shop_coilgate', tx: 4, ty: 7, dir: 'up' },
-      { x: 17, y: 12, to: 'house_coil', tx: 4, ty: 6, dir: 'up' }
+      { x: 6, y: 5, to: 'gym3', tx: 5, ty: 10, dir: 'up' },
+      { x: 19, y: 5, to: 'heal_coilgate', tx: 4, ty: 7, dir: 'up' },
+      { x: 7, y: 12, to: 'shop_coilgate', tx: 4, ty: 7, dir: 'up' },
+      { x: 18, y: 12, to: 'house_coil', tx: 4, ty: 6, dir: 'up' }
     ],
     signs: [
       { x: 14, y: 7, text: 'COILGATE CITY — Powered by ambition (and several thousand Voltail).' },
@@ -268,14 +269,14 @@
       'tutututututututututututu',
       'vxvxvxvxvxvxvxvxvxvxvxvx',
       'tu.....,..........f...tu',
-      'vx..7889....ABBBBC....vx',
+      'vx..7!89....AB&BBC....vx',
       'tu..dmmh....abbbbc....tu',
       'vx..W+DW....LMYYML....vx',
       'tu....................tu',
       'vxnnnnnnnnnnnnnnnnnnnnvx',
       'tussssssssssssssssssspp',
       'vx........pp..........pp',
-      'tu..qrrz..pp..1223....tu',
+      'tu..q@rz..pp..1223....tu',
       'vx..ijjk..pp..4556....vx',
       'tu..W$DW..pp..WNDW....tu',
       'vx........pp....,.....vx',
@@ -294,9 +295,9 @@
       { x: 23, y: 9, to: 'summitpath', tx: 1, ty: 27, dir: 'right' },
       { x: 14, y: 5, to: 'gym4', tx: 5, ty: 10, dir: 'up' },
       { x: 15, y: 5, to: 'gym4', tx: 5, ty: 10, dir: 'up' },
-      { x: 5, y: 5, to: 'heal_aurelune', tx: 4, ty: 7, dir: 'up' },
-      { x: 5, y: 12, to: 'shop_aurelune', tx: 4, ty: 7, dir: 'up' },
-      { x: 15, y: 12, to: 'house_aure', tx: 4, ty: 6, dir: 'up' }
+      { x: 6, y: 5, to: 'heal_aurelune', tx: 4, ty: 7, dir: 'up' },
+      { x: 6, y: 12, to: 'shop_aurelune', tx: 4, ty: 7, dir: 'up' },
+      { x: 16, y: 12, to: 'house_aure', tx: 4, ty: 6, dir: 'up' }
     ],
     signs: [
       { x: 12, y: 7, text: 'AURELUNE CITY — The moon lingers here a little longer.' },
@@ -321,13 +322,13 @@
       '####################',
       '##.......**......###',
       '##..*............###',
-      '#......ABBBBC......#',
+      '#......AB&BBC......#',
       '#......abbbbc......#',
       '#......LMYYML......#',
       '#..................#',
       '#...*...pppp...*...#',
       '#.......pppp.......#',
-      '#..7889.pppp.qrrz..#',
+      '#..7!89.pppp.q@rz..#',
       '#..dmmh.pppp.ijjk..#',
       '#..W+DW.pppp.W$DW..#',
       '#.......pppp.......#',
@@ -344,8 +345,8 @@
       { x: 11, y: 17, to: 'summitpath', tx: 11, ty: 1, dir: 'down' },
       { x: 9, y: 6, to: 'championhall', tx: 4, ty: 12, dir: 'up' },
       { x: 10, y: 6, to: 'championhall', tx: 5, ty: 12, dir: 'up' },
-      { x: 4, y: 12, to: 'heal_summit', tx: 4, ty: 7, dir: 'up' },
-      { x: 14, y: 12, to: 'shop_summit', tx: 4, ty: 7, dir: 'up' }
+      { x: 5, y: 12, to: 'heal_summit', tx: 4, ty: 7, dir: 'up' },
+      { x: 15, y: 12, to: 'shop_summit', tx: 4, ty: 7, dir: 'up' }
     ],
     signs: [
       { x: 12, y: 8, text: 'CROWN SUMMIT — Beyond this hall sits the Champion of Solyn.' }
@@ -357,3 +358,5 @@
     scripts: []
   };
 })();
+
+

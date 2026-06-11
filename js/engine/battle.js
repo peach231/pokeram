@@ -174,11 +174,16 @@
   G.Battle.prototype.turn = function* (pAction) {
     var fAction = this.chooseFoeAction();
     var order = this.orderActions(pAction, fAction);
+    // bind each action to the creature that chose it: if it faints (or is
+    // replaced) before acting, its action is cancelled — the fresh switch-in
+    // never inherits a dead teammate's move, and next turn reorders by speed
+    for (var b = 0; b < order.length; b++) order[b].actor = this.active(order[b].side);
 
     for (var i = 0; i < order.length; i++) {
       if (this.over) return;
       var side = order[i].side, action = order[i].action;
-      if (this.active(side).curHp <= 0) continue; // fainted before acting
+      if (this.active(side) !== order[i].actor) continue; // actor was replaced
+      if (this.active(side).curHp <= 0) continue;          // fainted before acting
       yield* this.doAction(side, action);
     }
     if (this.over) return;

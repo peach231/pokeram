@@ -122,6 +122,7 @@
     var hpTarget = { p: 1, f: 1 };
     var expShown = 0, expTarget = 0;
     var orb = { visible: false, x: 0, y: 0, t: 0, mode: null }; // throw/shake/rest
+    var particles = [];                  // {x,y,vx,vy,life,ch}
 
     var gen = null;          // active generator being pumped
     var task = null;         // current animation task
@@ -209,7 +210,17 @@
           if (step.success) {
             orb.mode = 'rest';
             G.audio.playJingle('jingle_catch');
-            task = { kind: 'wait', t: 0, frames: 18 };
+            // star burst around the orb
+            for (var pi = 0; pi < 10; pi++) {
+              var ang = (pi / 10) * Math.PI * 2;
+              particles.push({
+                x: FOE.x, y: FOE.y - 8,
+                vx: Math.cos(ang) * (0.8 + (pi % 3) * 0.4),
+                vy: Math.sin(ang) * (0.8 + (pi % 3) * 0.4) - 0.5,
+                life: 26 + (pi % 4) * 6
+              });
+            }
+            task = { kind: 'wait', t: 0, frames: 34 };
           } else {
             orb.visible = false;
             sprites.f.visible = true;
@@ -408,15 +419,30 @@
             if (battle.party.length >= 6) { G.pushScene(G.Textbox('Your party is full!')); return; }
             G.player.bag[id]--;
             startGen(battle.turn({ type: 'orb', id: id }));
-          } else if (it.kind === 'revive') {
-            var target = -1;
-            for (var p = 0; p < battle.party.length; p++) if (battle.party[p].curHp <= 0) { target = p; break; }
-            if (target === -1) { G.pushScene(G.Textbox('No one needs that right now.')); return; }
-            G.player.bag[id]--;
-            startGen(battle.turn({ type: 'item', id: id, target: target }));
           } else {
-            G.player.bag[id]--;
-            startGen(battle.turn({ type: 'item', id: id, target: battle.activeP }));
+            // pick which creature to use it on, like the real games
+            var tItems = [], tMap = [];
+            for (var p = 0; p < battle.party.length; p++) {
+              var pm = battle.party[p];
+              tItems.push(G.monName(pm) + ' ' + pm.curHp + '/' + G.monStats(pm).hp);
+              tMap.push(p);
+            }
+            G.pushScene(G.Chooser({
+              items: tItems, x: 30, y: 112 - tItems.length * 14 - 12,
+              cancelIndex: -1,
+              onCancel: function () {},
+              onPick: function (ti) {
+                var target = tMap[ti];
+                var tm = battle.party[target];
+                var ok =
+                  (it.kind === 'heal' && tm.curHp > 0 && tm.curHp < G.monStats(tm).hp) ||
+                  (it.kind === 'cure' && tm.status && it.statuses.indexOf(tm.status) !== -1) ||
+                  (it.kind === 'revive' && tm.curHp <= 0);
+                if (!ok) { G.pushScene(G.Textbox('It would have no effect on ' + G.monName(tm) + '.')); return; }
+                G.player.bag[id]--;
+                startGen(battle.turn({ type: 'item', id: id, target: target }));
+              }
+            }));
           }
         }
       }));
@@ -622,6 +648,18 @@
         drawSprite(ctx, 'f');
         drawSprite(ctx, 'p');
         drawOrb(ctx);
+        // catch celebration stars
+        for (var pi = particles.length - 1; pi >= 0; pi--) {
+          var pt = particles[pi];
+          pt.x += pt.vx; pt.y += pt.vy; pt.vy += 0.04; pt.life--;
+          if (pt.life <= 0) { particles.splice(pi, 1); continue; }
+          ctx.fillStyle = (pt.life >> 2) % 2 ? '#f8e878' : '#f4f4f4';
+          ctx.fillRect(Math.round(pt.x), Math.round(pt.y), 2, 2);
+          if (pt.life > 16) {
+            ctx.fillRect(Math.round(pt.x) - 1, Math.round(pt.y), 1, 1);
+            ctx.fillRect(Math.round(pt.x) + 2, Math.round(pt.y), 1, 1);
+          }
+        }
         drawPanels(ctx);
         drawTextbox(ctx);
       }

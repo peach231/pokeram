@@ -74,6 +74,61 @@
     };
   };
 
+  // ----------------------------------------------- caught: dex registration --
+  // Shown after a successful catch: clean canvas, the creature, its data.
+  G.CaughtScene = function (mon) {
+    var sp = G.SPECIES[mon.sp];
+    var t = 0;
+    return {
+      opaque: true,
+      update: function () {
+        t++;
+        if (t > 20 && (G.input.justPressed('A') || G.input.justPressed('B') || G.input.justPressed('start'))) {
+          G.audio.sfx('confirm');
+          G.popScene();
+        }
+      },
+      draw: function (ctx) {
+        ctx.fillStyle = '#f0ead8';
+        ctx.fillRect(0, 0, W, H);
+        ctx.fillStyle = '#d8d0b8';
+        ctx.fillRect(0, 0, W, 18);
+        ctx.fillRect(0, H - 14, W, 14);
+        G.text(ctx, sp.name + "'s data was added to the Creature Dex!", 10, 5, G.UI.text, '#f0ead8');
+        // creature on a pedestal, fading in
+        ctx.fillStyle = '#d8d0b8';
+        ctx.beginPath();
+        ctx.ellipse(62, 102, 38, 9, 0, 0, Math.PI * 2);
+        ctx.fill();
+        var img = G.IMG['mon_' + mon.sp];
+        if (img && t > 6) ctx.drawImage(img, 62 - img.width / 2, 104 - img.height);
+        // identity
+        G.text(ctx, 'No.' + (sp.id < 10 ? '00' : sp.id < 100 ? '0' : '') + sp.id + '  ' + sp.name, 116, 26, G.UI.text, '#d8d0b8');
+        for (var ty = 0; ty < sp.types.length; ty++) {
+          ctx.fillStyle = G.TYPE_COLORS[sp.types[ty]];
+          ctx.fillRect(116 + ty * 44, 38, 40, 11);
+          G.text(ctx, sp.types[ty].toUpperCase().slice(0, 8), 119 + ty * 44, 40, G.C.white);
+        }
+        // stat bars
+        var rows = [['HP', sp.base.hp], ['Atk', sp.base.atk], ['Def', sp.base.def], ['SpA', sp.base.spa], ['SpD', sp.base.spd], ['Spe', sp.base.spe]];
+        for (var i = 0; i < rows.length; i++) {
+          var y = 54 + i * 10;
+          G.text(ctx, rows[i][0], 116, y, G.UI.text, '#d8d0b8');
+          ctx.fillStyle = '#c8c0a8';
+          ctx.fillRect(142, y + 1, 80, 6);
+          ctx.fillStyle = rows[i][1] >= 100 ? G.UI.hpGreen : rows[i][1] >= 60 ? G.UI.expBlue : G.UI.hpYellow;
+          ctx.fillRect(143, y + 2, Math.round(78 * Math.min(1, rows[i][1] / 130)), 4);
+        }
+        // dex flavor
+        var lines = G.textWrap(sp.dex, 120);
+        for (var d = 0; d < Math.min(3, lines.length); d++) {
+          G.text(ctx, lines[d], 116, 118 + d * 10, G.UI.text, '#d8d0b8');
+        }
+        if ((G.frame >> 4) % 2 === 0) G.text(ctx, 'Z: continue', 92, H - 12, G.UI.text);
+      }
+    };
+  };
+
   // ------------------------------------------------------------ start menu --
   G.StartMenu = function () {
     var items = ['DEX', 'PARTY', 'BAG', 'SAVE', 'EXIT'];
@@ -355,7 +410,10 @@
           var y = 18 + (i - top) * 14;
           var isSeen = G.player.dexSeen[key], isCaught = G.player.dexCaught[key];
           var label = 'No.' + (sp.id < 10 ? '00' : sp.id < 100 ? '0' : '') + sp.id + '  ' + (isSeen ? sp.name : '-----');
-          G.text(ctx, label, 12, y, i === this.sel ? G.C.white : G.C.lgry, '#1a1c2c');
+          // caught = bright, seen-only = grayed, unseen = darkest
+          var color = isCaught ? G.C.white : isSeen ? G.C.gry : '#3a3f4e';
+          if (i === this.sel) color = isCaught ? '#f8e878' : G.C.lgry;
+          G.text(ctx, label, 12, y, color, '#1a1c2c');
           if (isCaught) G.text(ctx, '★', 2, y, G.UI.hpGreen);
           if (i === this.sel) ctx.drawImage(G.IMG.ui_cursor, 110, y + 1);
         }
@@ -365,12 +423,19 @@
         panel(ctx, 124, 16, 112, 120);
         if (G.player.dexCaught[curKey]) {
           var img = G.IMG['mon_' + curKey];
-          if (img) ctx.drawImage(img, 180 - img.width / 2, 76 - img.height);
+          if (img) ctx.drawImage(img, 168 - img.width / 2, 72 - img.height);
           G.text(ctx, curSp.name, 132, 22, G.UI.text, G.UI.textShadow);
-          G.text(ctx, RARITY_STARS[curSp.rarity] || '', 132, 80, '#b08818');
+          G.text(ctx, RARITY_STARS[curSp.rarity] || '', 196, 22, '#b08818');
+          // base stats, compact
+          var sRows = [['HP', curSp.base.hp], ['Atk', curSp.base.atk], ['Def', curSp.base.def], ['SpA', curSp.base.spa], ['SpD', curSp.base.spd], ['Spe', curSp.base.spe]];
+          for (var si = 0; si < sRows.length; si++) {
+            var sx = 132 + (si % 2) * 52, sy = 76 + Math.floor(si / 2) * 10;
+            G.text(ctx, sRows[si][0], sx, sy, G.UI.text, G.UI.textShadow);
+            G.text(ctx, String(sRows[si][1]), sx + 26, sy, '#2a6a8e', G.UI.textShadow);
+          }
           var lines = G.textWrap(curSp.dex, 96);
-          for (var d = 0; d < Math.min(4, lines.length); d++) {
-            G.text(ctx, lines[d], 132, 92 + d * 10, G.UI.text, G.UI.textShadow);
+          for (var d = 0; d < Math.min(3, lines.length); d++) {
+            G.text(ctx, lines[d], 132, 108 + d * 10, G.UI.text, G.UI.textShadow);
           }
         } else if (G.player.dexSeen[curKey]) {
           G.text(ctx, curSp.name, 132, 22, G.UI.text, G.UI.textShadow);

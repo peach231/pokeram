@@ -106,6 +106,20 @@ for (const id in (G.MAPS || {})) {
   for (const wp of (m.warps || [])) {
     if (!G.MAPS[wp.to]) errors.push(`MAP ${id}: warp to unknown map '${wp.to}'`);
   }
+  // every door tile must have a warp on it (broken doors are silent otherwise)
+  const DOORS = ['door', 'ldoor', 'gymdoor'];
+  if (m.ground && G.TILES) {
+    for (let y = 0; y < m.h; y++) {
+      for (let x = 0; x < m.w; x++) {
+        const tname = m.legend[m.ground[y][x]];
+        if (!DOORS.includes(tname)) continue;
+        const locked = (m.signs || []).some(s => s.x === x && s.y === y); // sign = locked-door flavor
+        if (!locked && !(m.warps || []).some(wp => wp.x === x && wp.y === y)) {
+          errors.push(`MAP ${id}: ${tname} at (${x},${y}) has no warp — door won't open`);
+        }
+      }
+    }
+  }
   for (const npc of (m.npcs || [])) {
     if (npc.sprite && G.ART && !G.ART['ch_' + npc.sprite + '_d0'] && !G.ART[npc.sprite]) {
       warn.push(`MAP ${id}: npc sprite '${npc.sprite}' has no art yet`);

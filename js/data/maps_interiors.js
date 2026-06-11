@@ -99,10 +99,10 @@
     };
   }
   healCenter('heal_cobblemarch', 'Cobblemarch', { map: 'cobblemarch', x: 14, y: 7 });
-  healCenter('heal_brinehollow', 'Brinehollow', { map: 'brinehollow', x: 9, y: 5 });
-  healCenter('heal_coilgate', 'Coilgate', { map: 'coilgate', x: 18, y: 6 });
-  healCenter('heal_aurelune', 'Aurelune', { map: 'aurelune', x: 5, y: 6 });
-  healCenter('heal_summit', 'Crown Summit', { map: 'crownsummit', x: 4, y: 13 });
+  healCenter('heal_brinehollow', 'Brinehollow', { map: 'brinehollow', x: 10, y: 5 });
+  healCenter('heal_coilgate', 'Coilgate', { map: 'coilgate', x: 19, y: 6 });
+  healCenter('heal_aurelune', 'Aurelune', { map: 'aurelune', x: 6, y: 6 });
+  healCenter('heal_summit', 'Crown Summit', { map: 'crownsummit', x: 5, y: 13 });
 
   function shop(id, exit, inventory) {
     G.MAPS[id] = {
@@ -128,10 +128,10 @@
     };
   }
   shop('shop_cobblemarch', { map: 'cobblemarch', x: 19, y: 7 }, ['potion', 'tameorb', 'cureall', 'snackbar']);
-  shop('shop_brinehollow', { map: 'brinehollow', x: 14, y: 5 }, ['potion', 'superpotion', 'tameorb', 'greatorb', 'cureall', 'repelmist']);
-  shop('shop_coilgate', { map: 'coilgate', x: 6, y: 13 }, ['superpotion', 'tameorb', 'greatorb', 'cureall', 'repelmist', 'revivedust']);
-  shop('shop_aurelune', { map: 'aurelune', x: 5, y: 13 }, ['superpotion', 'hyperpotion', 'greatorb', 'cureall', 'repelmist', 'revivedust']);
-  shop('shop_summit', { map: 'crownsummit', x: 14, y: 13 }, ['hyperpotion', 'greatorb', 'cureall', 'revivedust', 'repelmist']);
+  shop('shop_brinehollow', { map: 'brinehollow', x: 15, y: 5 }, ['potion', 'superpotion', 'tameorb', 'greatorb', 'cureall', 'repelmist']);
+  shop('shop_coilgate', { map: 'coilgate', x: 7, y: 13 }, ['superpotion', 'tameorb', 'greatorb', 'cureall', 'repelmist', 'revivedust']);
+  shop('shop_aurelune', { map: 'aurelune', x: 6, y: 13 }, ['superpotion', 'hyperpotion', 'greatorb', 'cureall', 'repelmist', 'revivedust']);
+  shop('shop_summit', { map: 'crownsummit', x: 15, y: 13 }, ['hyperpotion', 'greatorb', 'cureall', 'revivedust', 'repelmist']);
 
   // ------------------------------------------------------------------------
   // GYMS — one leader each, waiting at the far end of the hall.
@@ -166,9 +166,9 @@
       ]
     };
   }
-  gym('gym1', { map: 'cobblemarch', x: 4, y: 6 }, 'gym1_bram', 'prof', 'BEDROCK BADGE holders: Bram respects patience and stone.');
-  gym('gym2', { map: 'brinehollow', x: 4, y: 12 }, 'gym2_maris', 'mom', 'TIDE BADGE holders: Maris respects those who flow around trouble.');
-  gym('gym3', { map: 'coilgate', x: 4, y: 6 }, 'gym3_tess', 'boy', 'DYNAMO BADGE holders: Tess respects speed above all.');
+  gym('gym1', { map: 'cobblemarch', x: 5, y: 6 }, 'gym1_bram', 'prof', 'BEDROCK BADGE holders: Bram respects patience and stone.');
+  gym('gym2', { map: 'brinehollow', x: 5, y: 12 }, 'gym2_maris', 'mom', 'TIDE BADGE holders: Maris respects those who flow around trouble.');
+  gym('gym3', { map: 'coilgate', x: 5, y: 6 }, 'gym3_tess', 'boy', 'DYNAMO BADGE holders: Tess respects speed above all.');
   gym('gym4', { map: 'aurelune', x: 14, y: 6 }, 'gym4_vesper', 'mom', 'LUCID BADGE holders: Vesper already knows your next move.');
 
   // ------------------------------------------------------------------------
@@ -231,13 +231,13 @@
       npcs: [{ x: 6, y: 3, sprite: npcSprite, dir: 'down', dialog: lines }]
     };
   }
-  house('house_cobble', { map: 'cobblemarch', x: 6, y: 13 }, 'mom',
+  house('house_cobble', { map: 'cobblemarch', x: 7, y: 13 }, 'mom',
     ['Bram polishes that gym floor himself, you know.', 'Grass and Water moves crack rock right open. You didn\'t hear it from me.']);
-  house('house_brine', { map: 'brinehollow', x: 16, y: 14 }, 'boy',
+  house('house_brine', { map: 'brinehollow', x: 17, y: 14 }, 'boy',
     ['A sleeping Slumbear blocks the old coast shortcut sometimes.', 'Poke it. What\'s the worst that could happen?']);
-  house('house_coil', { map: 'coilgate', x: 17, y: 13 }, 'prof',
+  house('house_coil', { map: 'coilgate', x: 18, y: 13 }, 'prof',
     ['Hollowdeep\'s lower level glitters with crystal creatures.', 'And something older sleeps down there. Bring strong orbs.']);
-  house('house_aure', { map: 'aurelune', x: 15, y: 13 }, 'mom',
+  house('house_aure', { map: 'aurelune', x: 16, y: 13 }, 'mom',
     ['Vesper dreamed the champion\'s hall would crown someone new this season.', 'Her dreams have a habit of being right.']);
 
   // ==========================================================================
@@ -434,4 +434,5 @@
     'LUMIFAE, the Dawnbloom, has been expecting you.'
   ]);
 })();
+
 

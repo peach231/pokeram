@@ -69,11 +69,15 @@
       G.ctx.imageSmoothingEnabled = false;
 
       function resize() {
-        var scale = Math.max(1, Math.floor(Math.min(window.innerWidth / W, window.innerHeight / H)));
-        canvas.style.width = (W * scale) + 'px';
-        canvas.style.height = (H * scale) + 'px';
+        // fill the window: fractional scaling, lightly snapped to quarter
+        // steps so pixel widths stay tidy under nearest-neighbor
+        var scale = Math.min(window.innerWidth / W, window.innerHeight / H);
+        scale = Math.max(1, Math.floor(scale * 4) / 4);
+        canvas.style.width = Math.floor(W * scale) + 'px';
+        canvas.style.height = Math.floor(H * scale) + 'px';
       }
       window.addEventListener('resize', resize);
+      document.addEventListener('fullscreenchange', resize);
       resize();
     },
 
@@ -101,21 +105,38 @@
       G.gfx.buildFont();
     },
 
-    // Back sprites for creatures without an authored one: flip the front
-    // horizontally, then zoom the lower portion 2x and bottom-crop — the
-    // GBA back-sprite look (big, low-detail, partially out of frame).
+    // Back sprites for creatures without an authored one: flip the front,
+    // find its actual pixel bounds, and scale it to ALWAYS fit the 56x40
+    // back-sprite box (modest zoom for small creatures, gentle shrink for
+    // giants) — bottom-center anchored, never cropped.
     buildBacks: function () {
       for (var key in (G.SPECIES || {})) {
         var frontName = 'mon_' + key;
         var backName = 'mon_' + key + '_back';
         if (!G.IMG[frontName] || G.IMG[backName]) continue;
         var fl = flipped(G.IMG[frontName]);
+        var fctx = fl.getContext('2d');
+        var data = fctx.getImageData(0, 0, fl.width, fl.height).data;
+        var minX = fl.width, maxX = 0, minY = fl.height, maxY = 0;
+        for (var y = 0; y < fl.height; y++) {
+          for (var x = 0; x < fl.width; x++) {
+            if (data[(y * fl.width + x) * 4 + 3] > 0) {
+              if (x < minX) minX = x;
+              if (x > maxX) maxX = x;
+              if (y < minY) minY = y;
+              if (y > maxY) maxY = y;
+            }
+          }
+        }
+        if (maxX < minX) { minX = 0; maxX = fl.width - 1; minY = 0; maxY = fl.height - 1; }
+        var cw = maxX - minX + 1, ch = maxY - minY + 1;
+        var scale = Math.min(1.5, 52 / cw, 38 / ch);
+        scale = Math.max(0.5, Math.floor(scale * 4) / 4); // quarter steps, tidy pixels
+        var dw = Math.round(cw * scale), dh = Math.round(ch * scale);
         var c = makeCanvas(56, 40);
         var ctx = c.getContext('2d');
         ctx.imageSmoothingEnabled = false;
-        // center 32x32 of the flipped front, zoomed 2x, bottom-anchored
-        var s = fl.width / 48; // works for 56x56 fronts too
-        ctx.drawImage(fl, 8 * s, 14 * s, 32 * s, 32 * s, -4, -24, 64, 64);
+        ctx.drawImage(fl, minX, minY, cw, ch, Math.round(28 - dw / 2), 40 - dh, dw, dh);
         G.IMG[backName] = c;
       }
     },
