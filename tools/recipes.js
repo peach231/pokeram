@@ -15,35 +15,39 @@ const R = {};
 R.sproutle = {
   pal: { o: 'ink', g: 'leaf2', h: 'leaf3', e: 'leaf1', s: 'brn2', t: 'brn1', u: 'brn3', w: 'tan1', f: 'grn2', F: 'grn3', K: 'white' },
   draw(g) {
-    // sprout rising from the shell, peeking past the head's right side
-    g.line(35, 14, 36, 8, 'e', 2);
-    g.tri(36, 10, 29, 6, 35, 3, 'f');
-    g.tri(37, 10, 44, 6, 38, 3, 'f');
-    g.set(33, 6, 'F'); g.set(34, 6, 'F'); g.set(39, 5, 'F'); g.set(40, 5, 'F');
-    // shell: broad brown dome behind the body
-    g.ball(24, 31, 15, 12, 's', 'u', 't');
-    // arms out at the sides
-    g.ball(7, 31, 4, 5, 'g', 'h', 'e');
-    g.ball(41, 31, 4, 5, 'g', 'h', 'e');
-    // belly plate
-    g.ellipse(24, 35, 9, 8, 'w');
-    // feet planted at the baseline
-    g.ball(15, 43, 5, 4, 'g', 'h', 'e');
-    g.ball(33, 43, 5, 4, 'g', 'h', 'e');
-    g.set(13, 45, 'o'); g.set(16, 45, 'o');     // toe notches
-    g.set(31, 45, 'o'); g.set(34, 45, 'o');
-    // big friendly head over the shell
-    g.ball(23, 16, 12, 11, 'g', 'h', 'e');
+    // 3/4 battle pose: facing down-left, shell carried behind-right
+    // sprout on the shell's crown
+    g.line(35, 20, 37, 9, 'e', 2);
+    g.tri(37, 11, 30, 7, 36, 4, 'f');
+    g.tri(38, 11, 45, 7, 39, 4, 'f');
+    g.set(34, 7, 'F'); g.set(35, 7, 'F'); g.set(40, 6, 'F'); g.set(41, 6, 'F');
+    // shell dome behind and to the right
+    g.ball(30, 30, 13, 12, 's', 'u', 't');
+    // tail nub poking out the far side
+    g.tri(41, 34, 46, 37, 40, 39, 'g');
+    // far hind foot under the shell
+    g.ball(35, 42, 5, 4, 'e', null, null);
+    // chest and belly, angled to the near side
+    g.ball(17, 31, 9, 10, 'g', 'h', 'e');
+    g.ellipse(16, 34, 6, 7, 'w');
+    // near arm reaching forward
+    g.ball(7, 33, 4, 4, 'g', 'h', 'e');
+    // near foot, stepped toward the viewer
+    g.ball(14, 43, 5, 4, 'g', 'h', 'e');
+    g.set(12, 45, 'o'); g.set(15, 45, 'o');     // toe notches
+    g.set(33, 44, 'o');
+    // big head turned down-left, overlapping the shell
+    g.ball(17, 17, 12, 11, 'g', 'h', 'e');
     g.outline('o');
     g.seam(['g', 'h', 'e'], ['s', 't', 'u', 'w'], 'o');
-    g.seam(['w'], ['s', 't', 'u'], 't');
+    g.seam(['w'], ['s', 't', 'u', 'g', 'h', 'e'], 't');
     g.seam(['f', 'F'], ['g', 'h'], 'o');
-    // face: big bright eyes, happy open mouth
-    g.eye(16, 13, 4, 5);
-    g.eye(28, 13, 4, 5);
-    g.line(20, 23, 26, 23, 'o', 1);
-    g.set(21, 24, 'o'); g.set(22, 24, 'o'); g.set(23, 24, 'o');  // open smile
-    g.set(13, 19, 'F'); g.set(33, 19, 'F');     // cheek dots
+    // face set toward the lower-left, like a real front sprite
+    g.eye(9, 14, 4, 5);
+    g.eye(19, 14, 4, 5);
+    g.line(12, 24, 17, 25, 'o', 1);
+    g.set(13, 25, 'o'); g.set(14, 25, 'o');     // open smile
+    g.set(7, 20, 'F'); g.set(24, 20, 'F');      // cheek dots
   },
   back(g) {
     // rear: dominant brown shell with plate ring, head peeking above
@@ -66,39 +70,41 @@ R.sproutle = {
 R.aquilet = {
   pal: { o: 'ink', b: 'blu2', d: 'blu1', l: 'blu3', i: 'ice2', w: 'white', y: 'org2', Y: 'org3', K: 'white' },
   draw(g) {
-    // wave-curl crest sweeping back from the crown
-    g.ring(27, 10, 5, 4, 'i', 0.55, 160, 30);
-    g.set(31, 8, 'i'); g.set(32, 9, 'i');
-    // body egg, smaller than the head
-    g.ball(24, 35, 11, 11, 'b', 'l', 'd');
-    // wings raised at shoulder height, tips angled out
-    g.tri(12, 25, 3, 35, 14, 34, 'd');
-    g.tri(36, 25, 45, 35, 34, 34, 'd');
-    g.set(6, 31, 'l'); g.set(42, 31, 'l');      // feather edge
-    // white belly
-    g.ellipse(24, 38, 6, 6, 'w');
-    // big round head
-    g.ball(24, 16, 12, 11, 'b', 'l', 'd');
-    // white face bib (lower half of the face)
-    g.ellipse(24, 20, 8, 6, 'w');
-    // small hooked beak, centered
-    g.tri(20, 19, 28, 19, 24, 25, 'y');
-    g.tri(21, 19, 27, 19, 24, 22, 'Y');
-    // tail feathers
-    g.tri(28, 43, 36, 47, 26, 47, 'd');
-    // talons planted
-    g.rect(16, 44, 5, 2, 'y');
-    g.rect(27, 44, 5, 2, 'y');
-    g.rect(15, 46, 7, 1, 'o');
-    g.rect(26, 46, 7, 1, 'o');
-    g.set(18, 44, 'o'); g.set(29, 44, 'o');     // toe splits
+    // 3/4 battle pose: head turned down-left, tail feathers trailing right
+    // tail fan first, behind everything
+    g.tri(33, 36, 45, 40, 32, 45, 'd');
+    g.tri(34, 34, 43, 33, 33, 41, 'b');
+    // body egg, angled
+    g.ball(25, 33, 11, 11, 'b', 'l', 'd');
+    // far wing peeking over the back, near wing sweeping forward
+    g.tri(34, 24, 42, 32, 31, 33, 'd');
+    g.tri(13, 28, 5, 39, 16, 37, 'd');
+    g.set(8, 35, 'l');                          // feather edge
+    // white belly toward the near side
+    g.ellipse(20, 37, 6, 6, 'w');
+    // head turned down-left, overlapping the body
+    g.ball(19, 15, 12, 11, 'b', 'l', 'd');
+    // wave-curl crest swept back off the crown
+    g.ring(26, 8, 5, 4, 'i', 0.55, 160, 30);
+    g.set(30, 6, 'i'); g.set(31, 7, 'i');
+    // white face bib on the leading side
+    g.ellipse(17, 19, 8, 6, 'w');
+    // beak pointing down-left
+    g.tri(8, 19, 17, 17, 15, 25, 'y');
+    g.tri(10, 20, 16, 19, 14, 23, 'Y');
+    // talons, near foot stepped forward
+    g.rect(13, 44, 5, 2, 'y');
+    g.rect(26, 45, 5, 2, 'y');
+    g.rect(12, 46, 7, 1, 'o');
+    g.rect(25, 47, 6, 1, 'o');
+    g.set(15, 44, 'o'); g.set(28, 45, 'o');     // toe splits
     g.outline('o');
     g.seam(['w'], ['b', 'l', 'd'], 'd');
     g.seam(['y', 'Y'], ['w', 'b'], 'o');
     g.seam(['l', 'i'], ['b'], 'o');
-    // big sparkly eyes above the bib
-    g.eye(16, 12, 4, 5);
-    g.eye(28, 12, 4, 5);
+    // eyes set toward the beak side
+    g.eye(11, 11, 4, 5);
+    g.eye(21, 11, 4, 5);
   },
   back(g) {
     // rear: blue back, crest curl up top, wings at the sides, white hips
@@ -2923,6 +2929,9 @@ R.__trainers = {
 };
 
 module.exports = R;
+
+
+
 
 
 
