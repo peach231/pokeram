@@ -15,39 +15,36 @@ const R = {};
 R.sproutle = {
   pal: { o: 'ink', g: 'leaf2', h: 'leaf3', e: 'leaf1', s: 'brn2', t: 'brn1', u: 'brn3', w: 'tan1', f: 'grn2', F: 'grn3', K: 'white' },
   draw(g) {
-    // 3/4 battle pose: facing down-left, shell carried behind-right
-    // sprout on the shell's crown
-    g.line(35, 20, 37, 9, 'e', 2);
-    g.tri(37, 11, 30, 7, 36, 4, 'f');
-    g.tri(38, 11, 45, 7, 39, 4, 'f');
-    g.set(34, 7, 'F'); g.set(35, 7, 'F'); g.set(40, 6, 'F'); g.set(41, 6, 'F');
-    // shell dome behind and to the right
-    g.ball(30, 30, 13, 12, 's', 'u', 't');
-    // tail nub poking out the far side
-    g.tri(41, 34, 46, 37, 40, 39, 'g');
-    // far hind foot under the shell
-    g.ball(35, 42, 5, 4, 'e', null, null);
-    // chest and belly, angled to the near side
-    g.ball(17, 31, 9, 10, 'g', 'h', 'e');
-    g.ellipse(16, 34, 6, 7, 'w');
-    // near arm reaching forward
-    g.ball(7, 33, 4, 4, 'g', 'h', 'e');
-    // near foot, stepped toward the viewer
-    g.ball(14, 43, 5, 4, 'g', 'h', 'e');
-    g.set(12, 45, 'o'); g.set(15, 45, 'o');     // toe notches
-    g.set(33, 44, 'o');
-    // big head turned down-left, overlapping the shell
-    g.ball(17, 17, 12, 11, 'g', 'h', 'e');
+    // Turtwig formula: one connected quadruped hatchling, shell ON the back
+    // green torso, compact — everything attaches to this
+    g.ball(26, 31, 14, 7, 'g', 'h', 'e');
+    // four stubby legs clearly below the torso line
+    g.ball(14, 41, 4, 5, 'g', null, 'e');
+    g.ball(22, 42, 4, 5, 'g', null, 'e');
+    g.ball(31, 42, 4, 5, 'e', null, null);
+    g.ball(38, 41, 4, 5, 'e', null, null);
+    g.set(12, 44, 'o'); g.set(15, 44, 'o');     // toe notches
+    g.set(20, 45, 'o'); g.set(23, 45, 'o');
+    // tail nub at the rear
+    g.tri(39, 29, 45, 31, 38, 34, 'g');
+    // brown shell dome saddled on the back
+    g.ball(30, 23, 11, 9, 's', 'u', 't');
+    // sprout rooted in the shell's crown
+    g.line(30, 19, 31, 10, 'e', 2);
+    g.tri(31, 12, 24, 8, 30, 5, 'f');
+    g.tri(32, 12, 39, 8, 33, 5, 'f');
+    g.set(28, 8, 'F'); g.set(29, 8, 'F'); g.set(34, 7, 'F'); g.set(35, 7, 'F');
+    // big head rising at the front, turned down-left
+    g.ball(14, 20, 11, 11, 'g', 'h', 'e');
     g.outline('o');
-    g.seam(['g', 'h', 'e'], ['s', 't', 'u', 'w'], 'o');
-    g.seam(['w'], ['s', 't', 'u', 'g', 'h', 'e'], 't');
-    g.seam(['f', 'F'], ['g', 'h'], 'o');
-    // face set toward the lower-left, like a real front sprite
-    g.eye(9, 14, 4, 5);
-    g.eye(19, 14, 4, 5);
-    g.line(12, 24, 17, 25, 'o', 1);
-    g.set(13, 25, 'o'); g.set(14, 25, 'o');     // open smile
-    g.set(7, 20, 'F'); g.set(24, 20, 'F');      // cheek dots
+    g.seam(['s', 't', 'u'], ['g', 'h', 'e'], 'o');
+    g.seam(['f', 'F'], ['s', 'u'], 'o');
+    // face set down-left
+    g.eye(7, 17, 4, 5);
+    g.eye(17, 17, 4, 5);
+    g.line(9, 27, 14, 28, 'o', 1);
+    g.set(10, 28, 'o'); g.set(11, 28, 'o');     // open smile
+    g.set(5, 23, 'F'); g.set(22, 23, 'F');      // cheek dots
   },
   back(g) {
     // rear: dominant brown shell with plate ring, head peeking above
@@ -70,23 +67,21 @@ R.sproutle = {
 R.aquilet = {
   pal: { o: 'ink', b: 'blu2', d: 'blu1', l: 'blu3', i: 'ice2', w: 'white', y: 'org2', Y: 'org3', K: 'white' },
   draw(g) {
-    // 3/4 battle pose: head turned down-left, tail feathers trailing right
-    // tail fan first, behind everything
-    g.tri(33, 36, 45, 40, 32, 45, 'd');
-    g.tri(34, 34, 43, 33, 33, 41, 'b');
+    // 3/4 battle pose: head down-left, one clean flipper against the body
+    // small tail fan trailing behind-right
+    g.tri(33, 37, 43, 41, 32, 45, 'd');
     // body egg, angled
     g.ball(25, 33, 11, 11, 'b', 'l', 'd');
-    // far wing peeking over the back, near wing sweeping forward
-    g.tri(34, 24, 42, 32, 31, 33, 'd');
-    g.tri(13, 28, 5, 39, 16, 37, 'd');
-    g.set(8, 35, 'l');                          // feather edge
+    // near flipper resting along the body's side
+    g.ellipse(15, 33, 4, 8, 'd');
+    g.set(14, 28, 'l');
     // white belly toward the near side
-    g.ellipse(20, 37, 6, 6, 'w');
+    g.ellipse(22, 38, 6, 6, 'w');
     // head turned down-left, overlapping the body
     g.ball(19, 15, 12, 11, 'b', 'l', 'd');
-    // wave-curl crest swept back off the crown
-    g.ring(26, 8, 5, 4, 'i', 0.55, 160, 30);
-    g.set(30, 6, 'i'); g.set(31, 7, 'i');
+    // crest: two swept feather tufts rooted in the crown
+    g.tri(23, 9, 30, 3, 29, 11, 'd');
+    g.tri(19, 8, 24, 4, 24, 10, 'l');
     // white face bib on the leading side
     g.ellipse(17, 19, 8, 6, 'w');
     // beak pointing down-left
@@ -101,7 +96,7 @@ R.aquilet = {
     g.outline('o');
     g.seam(['w'], ['b', 'l', 'd'], 'd');
     g.seam(['y', 'Y'], ['w', 'b'], 'o');
-    g.seam(['l', 'i'], ['b'], 'o');
+    g.seam(['l'], ['b'], 'o');
     // eyes set toward the beak side
     g.eye(11, 11, 4, 5);
     g.eye(21, 11, 4, 5);
@@ -2929,6 +2924,8 @@ R.__trainers = {
 };
 
 module.exports = R;
+
+
 
 
 
