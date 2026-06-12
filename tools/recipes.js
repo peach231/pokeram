@@ -16,49 +16,57 @@ const R = {};
 R.sproutle = {
   pal: { o: 'ink', g: 'leaf2', h: 'leaf3', e: 'leaf1', s: 'brn2', t: 'brn1', u: 'brn3', w: 'tan1', f: 'grn2', F: 'grn3', K: 'white' },
   draw(g) {
-    // The panther/ram rule: head offset DIAGONALLY from the body with real
-    // overlap, a green neck visibly entering the shell collar — never a
-    // balloon stacked straight on top.
-    g.ellipse(14, 41, 4, 4, 'g');                // near leg, flat on the ground
-    g.ellipse(31, 41, 4, 4, 'g');                // far leg
-    // leaf tail poking out behind the shell (the grass-starter cue)
-    g.tri(35, 35, 45, 31, 41, 41, 'f');
-    g.line(34, 37, 38, 36, 'e', 2);              // leaf stem rooting it
-    g.set(41, 35, 'F'); g.set(42, 35, 'F');
-    // shell torso: brown dome wrapping the body
-    g.ball(25, 32, 10, 10, 's', 'u', 't');
-    // cream plastron on the leading front
-    g.ellipse(22, 33, 6, 8, 'w');
-    // green neck entering the shell above the plastron
-    g.ellipse(18, 23, 3, 4, 'g');
-    // chunky stubby arms hugging the shell sides (no stick lines)
-    g.ball(11, 31, 3, 5, 'g', null, 'e');        // near arm
-    g.ball(36, 31, 3, 5, 'e', null, null);       // far arm peeking out
-    // wide flattened head, forward-left of the shell, chin dipping in
+    // Near-copy of Squirtle's FRLG front, green with a crown leaf: wide
+    // head with cheek bulges (never a pure circle), chin sitting straight
+    // on the shell collar (no stalk neck), cone arms attached at the
+    // shoulders over the plastron, curled squiggle tail.
+    g.ellipse(13, 42, 4, 3, 'g');                // splayed legs
+    g.ellipse(31, 42, 4, 3, 'g');
+    // squiggle tail curling up behind
+    g.line(33, 37, 39, 35, 'g', 3);
+    g.line(39, 35, 42, 31, 'g', 2);
+    // shell torso with cream plastron
+    g.ball(24, 32, 10, 9, 's', 'u', 't');
+    g.ellipse(21, 33, 6, 7, 'w');
+    // chunky cone arms rooted at the shoulders, angled in over the plastron
+    g.tri(8, 28, 16, 24, 14, 36, 'g');           // near arm
+    g.tri(33, 25, 39, 28, 35, 35, 'e');          // far arm
+    // wide head, chin overlapping the shell collar directly
     g.ball(17, 16, 11, 9, 'g', 'h', 'e');
+    g.ellipse(8, 21, 3, 3, 'g');                 // chubby cheek bulges break
+    g.ellipse(26, 21, 3, 3, 'e');                // the circle outline
+    // crown leaf: fat oval blade with a pointed tip and center vein,
+    // swept to the side — grass cue, off-center on purpose
+    g.ellipse(24, 5, 5, 2.5, 'f');
+    g.tri(28, 3, 33, 3, 28, 8, 'f');
+    g.line(19, 8, 21, 6, 'e', 2);                // stem rooting it to the crown
+    g.line(21, 6, 28, 4, 'F', 1);                // vein
     g.outline('o');
     g.seam(['w'], ['s', 't', 'u'], 'o');          // plastron rim
     g.seam(['g', 'h', 'e'], ['s', 't', 'u', 'w'], 'o');
-    g.seam(['f', 'F'], ['s', 't', 'u'], 'o');
-    // big Squirtle eyes set wide + open grin
-    g.eye(8, 12, 5, 6);
+    g.seam(['f', 'F'], ['g', 'h', 'e', 's', 't', 'u'], 'o');
+    // big Squirtle eyes set wide + open grin between the cheeks
+    g.eye(9, 12, 5, 6);
     g.eye(20, 12, 5, 6);
-    g.line(12, 22, 17, 22, 'o', 1);
-    g.set(11, 21, 'o'); g.set(18, 21, 'o');      // upturned corners
+    g.line(12, 21, 17, 21, 'o', 1);
+    g.set(11, 20, 'o'); g.set(18, 20, 'o');      // upturned corners
   },
   back(g) {
-    // rear: dominant shell with plate ring, head above, leaf tail at right
+    // rear: dominant shell with plate ring, head above with the crown
+    // leaf visible, arm stubs at the sides, squiggle tail at right
     g.ball(28, 12, 10, 8, 'g', 'h', null);
-    g.tri(40, 32, 47, 27, 45, 38, 'f');
+    g.tri(31, 5, 40, 1, 34, 8, 'f');
+    g.line(41, 33, 45, 30, 'g', 3);
+    g.line(45, 30, 46, 26, 'g', 2);
     g.ball(28, 27, 14, 13, 's', 'u', 't');
     g.ring(28, 27, 10, 9, 't', 0.25);
-    g.line(13, 27, 9, 33, 'g', 3);
-    g.line(43, 27, 47, 33, 'g', 3);
+    g.ball(11, 30, 3, 4, 'g');
+    g.ball(45, 30, 3, 4, 'g');
     g.ellipse(18, 41, 4, 3, 'g');
     g.ellipse(38, 41, 4, 3, 'g');
     g.outline('o');
     g.seam(['g', 'h'], ['s', 't', 'u'], 'o');
-    g.seam(['f'], ['s', 't', 'u'], 'o');
+    g.seam(['f'], ['g', 'h', 's', 't', 'u'], 'o');
   }
 };
 
@@ -69,48 +77,44 @@ R.sproutle = {
 R.aquilet = {
   pal: { o: 'ink', b: 'blu2', d: 'blu1', l: 'blu3', n: 'blu0', i: 'ice2', w: 'white', y: 'org2', Y: 'org3', K: 'white' },
   draw(g) {
-    // Panther rule: head forward-left, body back-right, smooth neck curve
-    // between them. Wing gets its own NAVY ('n') so it can't melt into the
-    // body shading — folded blade with stepped primaries breaking the edge.
-    g.tri(31, 30, 44, 36, 30, 39, 'd');          // layered tail feathers
-    g.tri(30, 35, 41, 42, 29, 42, 'b');
-    // body, chest pushed forward-left
-    g.ball(26, 32, 10, 10, 'b', 'l', 'd');
-    // neck: thick curve joining chin to chest (same hue = seamless flow)
-    g.ellipse(20, 21, 5, 5, 'b');
-    // head clearly forward of the body
-    g.ball(15, 12, 9, 8, 'b', 'l', 'd');
+    // Taillow-compact build: big head sitting STRAIGHT on the chest (no
+    // stalk neck), navy folded wing with stepped primaries, hooked raptor
+    // beak, talons. Fierce but small and tight.
+    g.tri(33, 29, 45, 34, 32, 39, 'd');          // single clean tail fan
+    // body
+    g.ball(25, 31, 10, 10, 'b', 'l', 'd');
+    // head directly on the chest, slight forward lean
+    g.ball(17, 14, 10, 9, 'b', 'l', 'd');
     // eaglet fluff: crown tuft + nape feathers breaking the outline
-    g.tri(16, 4, 19, 1, 21, 5, 'l');
-    g.tri(22, 8, 28, 6, 24, 14, 'l');            // nape fluff
-    // folded near wing in NAVY, shoulder to rump, primaries poking out
-    g.tri(27, 21, 34, 26, 29, 40, 'n');
-    g.tri(34, 26, 36, 33, 29, 40, 'n');
-    g.tri(29, 36, 34, 34, 33, 43, 'n');          // stepped feather tips
-    g.tri(32, 31, 37, 30, 36, 39, 'n');
+    g.tri(15, 5, 18, 1, 20, 6, 'l');
+    g.tri(24, 9, 29, 8, 25, 15, 'l');
+    // folded near wing in NAVY, shoulder to rump, primaries past the edge
+    g.tri(25, 22, 33, 27, 28, 40, 'n');
+    g.tri(33, 27, 34, 33, 28, 40, 'n');
+    g.tri(28, 37, 33, 35, 32, 44, 'n');
     // narrow fluffy chest streak with notched feather bottom
-    g.ellipse(20, 31, 5, 7, 'w');
-    g.tri(16, 36, 20, 36, 17, 41, 'w');
-    g.tri(21, 36, 25, 35, 22, 41, 'w');
+    g.ellipse(19, 30, 5, 7, 'w');
+    g.tri(16, 35, 20, 35, 17, 40, 'w');
+    g.tri(21, 35, 25, 34, 22, 40, 'w');
     // feathered thighs
-    g.ellipse(17, 40, 3, 3, 'b');
+    g.ellipse(16, 40, 3, 3, 'b');
     g.ellipse(27, 41, 3, 3, 'b');
-    // raptor beak: long upper mandible with a clear downward hook
-    g.tri(4, 13, 12, 10, 12, 16, 'y');
-    g.set(4, 15, 'y'); g.set(4, 16, 'y'); g.set(5, 17, 'y'); // hook curls down
-    g.tri(8, 16, 12, 14, 11, 18, 'Y');
+    // hooked raptor beak, short and tight to the face
+    g.tri(6, 13, 13, 10, 13, 16, 'y');
+    g.set(6, 15, 'y'); g.set(6, 16, 'y'); g.set(7, 17, 'y'); // hook curls down
+    g.tri(9, 16, 13, 14, 12, 18, 'Y');
     // yellow talons gripping the ground, claw points at the front
-    g.rect(14, 43, 6, 2, 'y');
+    g.rect(13, 43, 6, 2, 'y');
     g.rect(24, 44, 6, 2, 'y');
-    g.set(16, 44, 'o'); g.set(26, 45, 'o');      // toe splits
-    g.set(13, 44, 'o'); g.set(23, 45, 'o');      // claws
+    g.set(15, 44, 'o'); g.set(26, 45, 'o');      // toe splits
+    g.set(12, 44, 'o'); g.set(23, 45, 'o');      // claws
     g.outline('o');
     g.seam(['n'], ['b', 'l', 'd'], 'o');          // wing reads as its own mass
     g.seam(['w'], ['b', 'l', 'd', 'n'], 'd');
     g.seam(['y', 'Y'], ['w', 'b', 'l'], 'o');
     // fierce almond brow eyes (the predator eye, same as the panther)
-    g.eyeAlmond(8, 7, 6, 4);
-    g.eyeAlmond(16, 7, 6, 4);
+    g.eyeAlmond(9, 8, 6, 4);
+    g.eyeAlmond(17, 8, 6, 4);
   },
   back(g) {
     // rear: blue back, crown/nape fluff, folded wings with feather tips,
