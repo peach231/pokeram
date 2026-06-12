@@ -28,19 +28,19 @@ R.sproutle = {
     // shell torso with cream plastron
     g.ball(24, 32, 10, 9, 's', 'u', 't');
     g.ellipse(21, 33, 6, 7, 'w');
-    // chunky cone arms rooted at the shoulders, angled in over the plastron
-    g.tri(8, 28, 16, 24, 14, 36, 'g');           // near arm
-    g.tri(33, 25, 39, 28, 35, 35, 'e');          // far arm
+    // arms: thick rounded strokes emerging from INSIDE the shell — the
+    // panther-limb technique. No triangles near limbs, ever: thin tris
+    // bake into serrated spikes once outline + sel-out land on them.
+    g.line(16, 27, 10, 33, 'g', 3);              // near arm
+    g.line(32, 27, 37, 32, 'e', 3);              // far arm
     // wide head, chin overlapping the shell collar directly
     g.ball(17, 16, 11, 9, 'g', 'h', 'e');
     g.ellipse(8, 21, 3, 3, 'g');                 // chubby cheek bulges break
     g.ellipse(26, 21, 3, 3, 'e');                // the circle outline
-    // crown leaf: fat oval blade with a pointed tip and center vein,
-    // swept to the side — grass cue, off-center on purpose
-    g.ellipse(24, 5, 5, 2.5, 'f');
-    g.tri(28, 3, 33, 3, 28, 8, 'f');
-    g.line(19, 8, 21, 6, 'e', 2);                // stem rooting it to the crown
-    g.line(21, 6, 28, 4, 'F', 1);                // vein
+    // one smooth oval leaf resting on the crown, base attached, tip free
+    g.ellipse(23, 6, 5, 3, 'f');
+    g.set(29, 5, 'f'); g.set(30, 4, 'f');        // 2px tip taper only
+    g.line(20, 7, 26, 5, 'F', 1);                // vein
     g.outline('o');
     g.seam(['w'], ['s', 't', 'u'], 'o');          // plastron rim
     g.seam(['g', 'h', 'e'], ['s', 't', 'u', 'w'], 'o');
@@ -80,18 +80,17 @@ R.aquilet = {
     // Taillow-compact build: big head sitting STRAIGHT on the chest (no
     // stalk neck), navy folded wing with stepped primaries, hooked raptor
     // beak, talons. Fierce but small and tight.
-    g.tri(33, 29, 45, 34, 32, 39, 'd');          // single clean tail fan
+    g.tri(33, 29, 45, 34, 32, 39, 'd');          // tail fan (wide base bakes clean)
     // body
     g.ball(25, 31, 10, 10, 'b', 'l', 'd');
     // head directly on the chest, slight forward lean
     g.ball(17, 14, 10, 9, 'b', 'l', 'd');
-    // eaglet fluff: crown tuft + nape feathers breaking the outline
-    g.tri(15, 5, 18, 1, 20, 6, 'l');
-    g.tri(24, 9, 29, 8, 25, 15, 'l');
-    // folded near wing in NAVY, shoulder to rump, primaries past the edge
-    g.tri(25, 22, 33, 27, 28, 40, 'n');
-    g.tri(33, 27, 34, 33, 28, 40, 'n');
-    g.tri(28, 37, 33, 35, 32, 44, 'n');
+    // smooth crest and nape bumps — rounded, never spikes
+    g.ellipse(16, 5, 3, 2, 'l');
+    g.ellipse(26, 12, 3, 4, 'l');
+    // folded wing: slim navy pill hugging the side, 2px tip taper
+    g.ellipse(29, 30, 4, 9, 'n');
+    g.set(31, 40, 'n'); g.set(30, 41, 'n');
     // narrow fluffy chest streak with notched feather bottom
     g.ellipse(19, 30, 5, 7, 'w');
     g.tri(16, 35, 20, 35, 17, 40, 'w');
@@ -99,10 +98,10 @@ R.aquilet = {
     // feathered thighs
     g.ellipse(16, 40, 3, 3, 'b');
     g.ellipse(27, 41, 3, 3, 'b');
-    // hooked raptor beak, short and tight to the face
-    g.tri(6, 13, 13, 10, 13, 16, 'y');
-    g.set(6, 15, 'y'); g.set(6, 16, 'y'); g.set(7, 17, 'y'); // hook curls down
-    g.tri(9, 16, 13, 14, 12, 18, 'Y');
+    // beak: ONE solid orange wedge with the hook curling down at the tip
+    // (split mandibles read as a screaming open mouth at this scale)
+    g.tri(6, 14, 13, 11, 13, 17, 'y');
+    g.set(6, 16, 'y'); g.set(7, 17, 'y');
     // yellow talons gripping the ground, claw points at the front
     g.rect(13, 43, 6, 2, 'y');
     g.rect(24, 44, 6, 2, 'y');
@@ -111,10 +110,10 @@ R.aquilet = {
     g.outline('o');
     g.seam(['n'], ['b', 'l', 'd'], 'o');          // wing reads as its own mass
     g.seam(['w'], ['b', 'l', 'd', 'n'], 'd');
-    g.seam(['y', 'Y'], ['w', 'b', 'l'], 'o');
-    // fierce almond brow eyes (the predator eye, same as the panther)
-    g.eyeAlmond(9, 8, 6, 4);
-    g.eyeAlmond(17, 8, 6, 4);
+    g.seam(['y'], ['w', 'b', 'l'], 'o');
+    // round chick eyes — almond brow lines merge into a visor at this size
+    g.eye(10, 9, 4, 5);
+    g.eye(19, 9, 4, 5);
   },
   back(g) {
     // rear: blue back, crown/nape fluff, folded wings with feather tips,
