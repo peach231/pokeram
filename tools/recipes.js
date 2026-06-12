@@ -14,7 +14,7 @@ const R = {};
 // WRAPPING the torso (cream plastron framed by brown rim on the front),
 // green arms in front of the shell, splayed stubby legs, leaf tail.
 R.sproutle = {
-  pal: { o: 'ink', g: 'leaf2', h: 'leaf3', e: 'leaf1', s: 'brn2', t: 'brn1', u: 'brn3', w: 'tan1', f: 'grn2', F: 'grn3', K: 'white' },
+  pal: { o: 'ink', g: 'leaf2', h: 'leaf3', e: 'leaf1', s: 'brn2', t: 'brn1', u: 'brn3', w: 'tan1', v: 'tan0', f: 'grn2', F: 'grn3', K: 'white' },
   draw(g) {
     // Near-copy of Squirtle's FRLG front, green with a crown leaf: wide
     // head with cheek bulges (never a pure circle), chin sitting straight
@@ -22,12 +22,16 @@ R.sproutle = {
     // shoulders over the plastron, curled squiggle tail.
     g.ellipse(13, 42, 4, 3, 'g');                // splayed legs
     g.ellipse(31, 42, 4, 3, 'g');
-    // squiggle tail curling up behind
+    // squiggle tail curling up behind, tipped with a tiny leaf
     g.line(33, 37, 39, 35, 'g', 3);
     g.line(39, 35, 42, 31, 'g', 2);
-    // shell torso with cream plastron
+    g.set(42, 30, 'f'); g.set(43, 30, 'f'); g.set(43, 29, 'f');
+    // shell torso: pale rim arc along the lower shell edge (Squirtle's
+    // white shell trim), then the cream plastron over the front
     g.ball(24, 32, 10, 9, 's', 'u', 't');
+    g.ring(24, 32, 10, 9, 'w', 0.2, 20, 160);
     g.ellipse(21, 33, 6, 7, 'w');
+    g.line(17, 35, 26, 35, 'v', 1);              // plastron split line
     // arms: thick rounded strokes emerging from INSIDE the shell — the
     // panther-limb technique. No triangles near limbs, ever: thin tris
     // bake into serrated spikes once outline + sel-out land on them.
@@ -45,9 +49,11 @@ R.sproutle = {
     g.seam(['w'], ['s', 't', 'u'], 'o');          // plastron rim
     g.seam(['g', 'h', 'e'], ['s', 't', 'u', 'w'], 'o');
     g.seam(['f', 'F'], ['g', 'h', 'e', 's', 't', 'u'], 'o');
-    // big Squirtle eyes set wide + open grin between the cheeks
-    g.eye(9, 12, 5, 6);
-    g.eye(20, 12, 5, 6);
+    // SMALL eyes (panther rule: big saucer eyes read as a plush toy),
+    // nostril dots, wide grin between the cheeks
+    g.eye(9, 13, 4, 4);
+    g.eye(20, 13, 4, 4);
+    g.set(13, 18, 'o'); g.set(15, 18, 'o');      // nostrils
     g.line(12, 21, 17, 21, 'o', 1);
     g.set(11, 20, 'o'); g.set(18, 20, 'o');      // upturned corners
   },
@@ -85,12 +91,19 @@ R.aquilet = {
     g.ball(25, 31, 10, 10, 'b', 'l', 'd');
     // head directly on the chest, slight forward lean
     g.ball(17, 14, 10, 9, 'b', 'l', 'd');
-    // smooth crest and nape bumps — rounded, never spikes
-    g.ellipse(16, 5, 3, 2, 'l');
+    // smooth swept crest + nape bump — rounded, never spikes
+    g.ellipse(15, 4, 3, 2, 'l');
+    g.ellipse(21, 6, 2, 2, 'd');
     g.ellipse(26, 12, 3, 4, 'l');
-    // folded wing: slim navy pill hugging the side, 2px tip taper
+    // white face mask over the front of the head: the bald-eagle cue, and
+    // it lets small dark eyes + brows pop without merging into a visor
+    // (kept ABOVE the beak line — white under the beak reads as a mouth)
+    g.ellipse(14, 12, 6, 5, 'w');
+    // folded wing: slim navy pill with feather seams inside, 2px tip taper
     g.ellipse(29, 30, 4, 9, 'n');
     g.set(31, 40, 'n'); g.set(30, 41, 'n');
+    g.line(27, 28, 31, 32, 'd', 1);              // folded primary seams
+    g.line(27, 33, 30, 37, 'd', 1);
     // narrow fluffy chest streak with notched feather bottom
     g.ellipse(19, 30, 5, 7, 'w');
     g.tri(16, 35, 20, 35, 17, 40, 'w');
@@ -98,10 +111,10 @@ R.aquilet = {
     // feathered thighs
     g.ellipse(16, 40, 3, 3, 'b');
     g.ellipse(27, 41, 3, 3, 'b');
-    // beak: ONE solid orange wedge with the hook curling down at the tip
-    // (split mandibles read as a screaming open mouth at this scale)
-    g.tri(6, 14, 13, 11, 13, 17, 'y');
-    g.set(6, 16, 'y'); g.set(7, 17, 'y');
+    // beak: ONE solid orange wedge, tall enough at the base that outline +
+    // seam leave a real orange interior; hook curling down at the tip
+    g.tri(4, 13, 13, 10, 13, 18, 'y');
+    g.set(4, 15, 'y'); g.set(5, 16, 'y'); g.set(6, 17, 'y');
     // yellow talons gripping the ground, claw points at the front
     g.rect(13, 43, 6, 2, 'y');
     g.rect(24, 44, 6, 2, 'y');
@@ -110,10 +123,13 @@ R.aquilet = {
     g.outline('o');
     g.seam(['n'], ['b', 'l', 'd'], 'o');          // wing reads as its own mass
     g.seam(['w'], ['b', 'l', 'd', 'n'], 'd');
-    g.seam(['y'], ['w', 'b', 'l'], 'o');
-    // round chick eyes — almond brow lines merge into a visor at this size
-    g.eye(10, 9, 4, 5);
-    g.eye(19, 9, 4, 5);
+    g.seam(['y', 'Y'], ['w', 'b', 'l'], 'o');
+    // SMALL fierce eyes on the white mask, slanted brow strokes kept one
+    // white row above so they read as brows, never a visor band
+    g.eye(9, 10, 4, 4);
+    g.eye(17, 10, 4, 4);
+    g.line(8, 9, 11, 8, 'o', 1);
+    g.line(16, 9, 19, 8, 'o', 1);
   },
   back(g) {
     // rear: blue back, crown/nape fluff, folded wings with feather tips,
