@@ -230,6 +230,13 @@
     }
   };
 
+  // Healing/cure/revive items are FREE actions: applied on the spot, the
+  // foe does not get a move, and the player still picks a real action for
+  // the turn. (Orbs still consume the turn — catching is a gamble.)
+  G.Battle.prototype.freeAction = function* (pAction) {
+    yield* this.doItem(pAction);
+  };
+
   G.Battle.prototype.doSwitch = function* (side, index) {
     var name = G.monName(this.active(side));
     if (side === 'p') {
@@ -577,7 +584,7 @@
 
   G.Battle.prototype.awardExp = function* (faintedFoe) {
     var sp = G.SPECIES[faintedFoe.sp];
-    var amount = Math.floor(sp.expYield * faintedFoe.level / 7);
+    var amount = Math.floor(sp.expYield * faintedFoe.level / 6);
     if (this.trainer) amount = Math.floor(amount * 1.5);
 
     for (var idx in this.participants) {

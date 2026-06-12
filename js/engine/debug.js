@@ -103,10 +103,11 @@
     assert(G.typeEff('water', ['water', 'dragon']) === 0.25, 'water->water/dragon should be 0.25');
     assert(G.isPhysical('ghost') && !G.isPhysical('dark'), 'gen3 split: ghost phys, shadow special');
 
-    // level curve boundaries
-    assert(G.expForLevel(10) === 1000, 'exp(10)=1000');
+    // level curve boundaries (medium-slow: 1.2L^3 - 15L^2 + 100L - 140)
+    assert(G.expForLevel(10) === 560, 'exp(10)=560, got ' + G.expForLevel(10));
+    assert(G.expForLevel(6) - G.expForLevel(5) === 44, 'L5->6 gap should be 44');
     var m = G.makeMon('cheepit', 9);
-    G.gainExp(m, 1000 - G.expForLevel(9));
+    G.gainExp(m, G.expForLevel(10) - G.expForLevel(9));
     assert(m.level === 10, 'gainExp boundary -> level 10, got ' + m.level);
 
     // stat formula known answer: level 50, base 100, iv 10

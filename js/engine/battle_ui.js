@@ -445,7 +445,9 @@
                   (it.kind === 'revive' && tm.curHp <= 0);
                 if (!ok) { G.pushScene(G.Textbox('It would have no effect on ' + G.monName(tm) + '.')); return; }
                 G.player.bag[id]--;
-                startGen(battle.turn({ type: 'item', id: id, target: target }));
+                // free action: item applies on the spot, the foe does NOT
+                // move, and the command menu reopens for the real turn
+                startGen(battle.freeAction({ type: 'item', id: id, target: target }));
               }
             }));
           }

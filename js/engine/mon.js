@@ -3,10 +3,15 @@
 // Stat formulas (IVs 0-15, no EVs):
 //   hp    = floor((2*base + iv) * L / 100) + L + 10
 //   other = floor((2*base + iv) * L / 100) + 5
-// Exp curve (all species): exp(L) = L^3.
+// Exp curve (all species): medium-slow, 1.2L^3 - 15L^2 + 100L - 140 —
+// the canon starter curve: early levels cost very little (L5->6 is 44 exp
+// vs 91 on pure L^3), then the 1.2L^3 term dominates and growth slows.
 
 (function () {
-  G.expForLevel = function (L) { return L * L * L; };
+  G.expForLevel = function (L) {
+    if (L <= 1) return 0;
+    return Math.max(0, Math.floor(1.2 * L * L * L - 15 * L * L + 100 * L - 140));
+  };
 
   function rollIvs() {
     return {
